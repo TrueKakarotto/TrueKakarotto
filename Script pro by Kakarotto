@@ -570,6 +570,7 @@ local function PGPDYH_fake_script() -- Frame_2.Script
 		{nombre= "HRJGNSIYDJEKJH",verificado = true},
 		{nombre= "NAGATOFF1234577",verificado = true},
                 {nombre= "king_sombra9279",verificado = true},
+                {nombre= "Androide0132",verificado = true},
 	}
 	local contador = 0
 	
