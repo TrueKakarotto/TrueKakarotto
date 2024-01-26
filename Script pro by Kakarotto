@@ -573,6 +573,7 @@ local function PGPDYH_fake_script() -- Frame_2.Script
                 {nombre= "Androide0132",verificado = true},
                 {nombre= "TENEBROSO1578",verificado = true},
                 {nombre= "BIN_GAME100",verificado = true},
+                {nombre= "ZAIKO_xXarhurXx",verificado = true},
 	}
 	local contador = 0
 	
