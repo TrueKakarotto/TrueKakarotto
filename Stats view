@@ -910,7 +910,7 @@ else
 		local checkValue = getCheckValue()
 		if checkValue >= 200000000 and game.placeId ~= 5151400895 then
 			data = game.ReplicatedStorage.Datas[game.Players.LocalPlayer.UserId]
-			if data.Zeni.Value >= 15000 then
+			if data.Zeni.Value >= 15000000000000000000000000000000000000000000 then
 				local A_1 = "Vills Planet"
 				local Event = game:GetService("ReplicatedStorage").Package.Events.TP
 				Event:InvokeServer(A_1)
