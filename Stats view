@@ -1,0 +1,3113 @@
+--_77Watermark("DBU_PREMIUM - discord.gg/HZRXDBysXY | 77fuscator")
+wait(4)
+
+repeat
+	task.wait()
+until game.Players.LocalPlayer ~= nil and game.Players.LocalPlayer.Name ~= nil and game.Players.LocalPlayer:GetMouse() ~= nil
+
+repeat
+	task.wait()
+until game:IsLoaded()
+
+
+local function stoprunning()
+	while true do
+	end 
+end
+if  game.PlaceId == 5151400895 and game.PlaceId == 3311165597 and game.PlaceId == 3608496430 then
+	return stoprunning()
+else
+	function notify(Text)
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Script",
+			Text = Text,
+			Icon = nil,
+			Duration = 3,
+		})
+	end
+
+	local vu = game:GetService("VirtualUser")
+	game:GetService("Players").LocalPlayer.Idled:connect(function()
+		vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+		wait(1)
+		vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+	end)
+
+	if game:FindFirstChild("DBU Prefmium") then
+		return notify("Already Loaded")
+	end
+	local MainFolder = Instance.new("Folder", game)
+	MainFolder.Name = "DBU Premium"
+
+	spawn(function()
+		if game:GetService("CoreGui"):FindFirstChild("PlayerList") then
+			game:GetService("CoreGui"):FindFirstChild("PlayerList"):Destroy()
+		end
+		
+		function format_number(number)
+			local suffixes = {"", "K", "M", "B", "T", "QD"}
+			local suffix_index = 1
+		
+			while math.abs(number) >= 1000 and suffix_index < #suffixes do
+				number = number / 1000.0
+				suffix_index = suffix_index + 1
+			end
+		
+			return string.format("%.2f%s", number, suffixes[suffix_index])
+		end
+		
+		local player = game:GetService("Players").LocalPlayer
+		local Main = Instance.new("ScreenGui")
+		local LeaderBoard = Instance.new("Frame")
+		local Label = Instance.new("TextLabel")
+		local Underline = Instance.new("Frame")
+		local UICorner = Instance.new("UICorner")
+		local ScrollingFrame = Instance.new("ScrollingFrame")
+		local listLayout = Instance.new("UIListLayout")
+		
+		Main.Name = "Main"
+		Main.Parent = game:GetService("CoreGui")
+		
+		LeaderBoard.Name = "LeaderBoard"
+		LeaderBoard.Parent = Main
+		LeaderBoard.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
+		LeaderBoard.BackgroundTransparency = 0.200
+		LeaderBoard.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		LeaderBoard.BorderSizePixel = 0
+		LeaderBoard.Position = UDim2.new(0.828558645, 0, 0.05, 0)
+		LeaderBoard.Size = UDim2.new(0, 300, 0, 433)
+		
+		Label.Name = "Label"
+		Label.Parent = LeaderBoard
+		Label.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		Label.BackgroundTransparency = 1.000
+		Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Label.BorderSizePixel = 0
+		Label.Position = UDim2.new(-0.00113967364, 0, -0.00239559473, 0)
+		Label.Size = UDim2.new(0, 300, 0, 26)
+		Label.Font = Enum.Font.SourceSans
+		Label.Text = "LeaderBoard"
+		Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Label.TextScaled = true
+		Label.TextSize = 14.000
+		Label.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+		Label.TextWrapped = true
+		
+		Underline.Name = "Underline"
+		Underline.Parent = LeaderBoard
+		Underline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Underline.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Underline.BorderSizePixel = 0
+		Underline.Position = UDim2.new(0, 0, 0.0577367209, 0)
+		Underline.Size = UDim2.new(0, 300, 0, 2)
+		
+		UICorner.CornerRadius = UDim.new(0, 5)
+		UICorner.Parent = LeaderBoard
+		
+		ScrollingFrame.Parent = LeaderBoard
+		ScrollingFrame.Active = true
+		ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ScrollingFrame.BackgroundTransparency = 1.000
+		ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		ScrollingFrame.BorderSizePixel = 0
+		ScrollingFrame.Position = UDim2.new(0, 0, 0.0623556599, 0)
+		ScrollingFrame.Size = UDim2.new(0, 300, 0, 406)
+		ScrollingFrame.BottomImage = "rbxassetid://1195495135"
+		ScrollingFrame.MidImage = "rbxassetid://1195495135"
+		ScrollingFrame.ScrollBarThickness = 6
+		ScrollingFrame.TopImage = "rbxassetid://1195495135"
+		
+		
+		listLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		listLayout.Parent = ScrollingFrame
+		
+		local function UZFFS_fake_script() -- LeaderBoard.Dragify 
+			local script = Instance.new('LocalScript', LeaderBoard)
+		
+			local UserInputService = game:GetService("UserInputService")
+			
+			local gui = script.Parent
+			
+			local dragging
+			local dragInput
+			local dragStart
+			local startPos
+			
+			local function update(input)
+				local delta = input.Position - dragStart
+				gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+			end
+			
+			gui.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+					dragging = true
+					dragStart = input.Position
+					startPos = gui.Position
+			
+					input.Changed:Connect(function()
+						if input.UserInputState == Enum.UserInputState.End then
+							dragging = false
+						end
+					end)
+				end
+			end)
+			
+			gui.InputChanged:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+					dragInput = input
+				end
+			end)
+			
+			UserInputService.InputChanged:Connect(function(input)
+				if input == dragInput and dragging then
+					update(input)
+				end
+			end)
+		end
+		coroutine.wrap(UZFFS_fake_script)()
+		
+		local function updateLeaderboard()
+			for _, child in ipairs(ScrollingFrame:GetChildren()) do
+				if child then
+					child:Destroy()
+				end
+			end
+		
+			local players = game:GetService("Players"):GetPlayers()
+		
+			local yOffset = 0
+			for i, player in ipairs(players) do
+				local entryFrame = Instance.new("Frame")
+				entryFrame.Name = "EntryFrame"
+				entryFrame.Size = UDim2.new(1, 0, 0, 20)
+				entryFrame.Position = UDim2.new(0, 10, 0, 10 + (i - 1) * 35)
+				entryFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+				entryFrame.BackgroundTransparency = 0.5
+				entryFrame.Parent = ScrollingFrame
+		
+				local nameLabel = Instance.new("TextLabel")
+				nameLabel.Name = "NameLabel"
+				nameLabel.Size = UDim2.new(0.5, -80, 1, 0)
+				nameLabel.Position = UDim2.new(0, 10, 0, 0 + (i - 1) * 0)
+				nameLabel.Text = player.Name
+				nameLabel.TextColor3 = Color3.new(1, 1, 1)
+				nameLabel.BackgroundTransparency = 1
+				nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+				nameLabel.Parent = entryFrame
+		
+				local playerStats = game:GetService("ReplicatedStorage"):FindFirstChild("Datas"):FindFirstChild(tostring(player.UserId))
+				if playerStats then
+					local playerRebirths = playerStats:FindFirstChild("Rebirth")
+		
+					local strengthStat = playerStats:FindFirstChild("Strength")
+					local defenceStat = playerStats:FindFirstChild("Defense")
+					local energyStat = playerStats:FindFirstChild("Energy")
+					local speedStat = playerStats:FindFirstChild("Speed")
+		
+					if strengthStat and defenceStat and energyStat and speedStat then
+						local averageLabel = Instance.new("TextLabel")
+						averageLabel.Name = "AverageLabel"
+						averageLabel.Size = UDim2.new(0.25, 0, 1, 0)
+						averageLabel.Position = UDim2.new(0.5, 60, 0, 0 + (i - 1) * 0)
+						local averageValue = (strengthStat.Value + defenceStat.Value + energyStat.Value + speedStat.Value) / 4
+						averageLabel.Text = "Avg: " .. format_number(averageValue)
+						averageLabel.TextColor3 = Color3.new(1, 1, 1)
+						averageLabel.BackgroundTransparency = 1
+						averageLabel.TextXAlignment = Enum.TextXAlignment.Left
+						averageLabel.Parent = entryFrame
+					end
+		
+					if playerRebirths then
+						local rebirthLabel = Instance.new("TextLabel")
+						rebirthLabel.Name = "RebirthLabel"
+						rebirthLabel.Size = UDim2.new(0.25, 0, 1, 0)
+						rebirthLabel.Position = UDim2.new(1, -180, 0, 0 + (i - 1) * 0)
+						rebirthLabel.Text = "Rebirths: " .. tostring(playerRebirths.Value)
+						rebirthLabel.TextColor3 = Color3.new(1, 1, 1)
+						rebirthLabel.BackgroundTransparency = 1
+						rebirthLabel.TextXAlignment = Enum.TextXAlignment.Right
+						rebirthLabel.Parent = entryFrame
+					end
+				end
+		
+				yOffset = yOffset + 40
+			end
+		
+			-- Update the canvas size to fit the new entries
+			ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, yOffset)
+		end
+		
+		updateLeaderboard()
+		
+		-- Schedule leaderboard updates every 2 seconds
+		while wait(1) do
+			if ScrollingFrame.Visible then
+				updateLeaderboard()
+			end
+		end	
+	end)
+
+
+	game:WaitForChild("ReplicatedStorage")
+	game.ReplicatedStorage:WaitForChild("Datas")
+	game.ReplicatedStorage.Datas:WaitForChild(game.Players.LocalPlayer.UserId)
+	wait()
+	function formstack(form)
+		
+		if game:GetService("Players").LocalPlayer.Status.Transformation.Value ~= "None"  then
+			game:GetService("ReplicatedStorage").Package.Events.ta:InvokeServer()
+			task.wait()
+			game:GetService("ReplicatedStorage").Package.Events.equipskill:InvokeServer(form)
+			task.wait()
+			game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
+			task.wait(5.7)
+			game:GetService("ReplicatedStorage").Package.Events.ta:InvokeServer()
+			task.wait()
+			game:GetService("ReplicatedStorage").Package.Events.AuraTrigger:InvokeServer()
+		else
+			game:GetService("ReplicatedStorage").Package.Events.equipskill:InvokeServer(form)
+			task.wait()
+			game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
+			task.wait(5.7)
+			game:GetService("ReplicatedStorage").Package.Events.ta:InvokeServer()
+			task.wait()
+			game:GetService("ReplicatedStorage").Package.Events.AuraTrigger:InvokeServer()
+		end
+	end
+
+-- Variables
+	getgenv().stackneeded = true
+	getgenv().autostackloop = false
+	local targetted;
+	local transformStatus = false
+	local autoFarmLoopRunning = false
+	local stacked = false
+	local flying = false
+	local switch = 1
+	local charge = false
+	local checkValue;
+	getgenv().dead = false
+	getgenv().rebirthed = false
+	local function getCheckValue()
+		data = game.ReplicatedStorage.Datas[game.Players.LocalPlayer.UserId]
+		local a = data.Strength.Value
+		local b = data.Energy.Value
+		local c = data.Defense.Value
+		local d = data.Speed.Value
+		local smallest = a -- initialize smallest variable to the first number
+		if b < smallest then
+			smallest = b
+		end
+		if c < smallest then
+			smallest = c
+		end
+		if d < smallest then
+			smallest = d
+		end
+		checkValue = smallest
+		return checkValue
+	end
+	--[[
+	'SSJB4',
+	'True God of Creation',
+	'True God of Destruction',
+	'Super Broly',
+	'LSSJG',
+	'LSSJ4',
+	'SSJG4',
+	]]
+	local FormsList = {
+		Evil = {
+			{
+				name = "Kaioken",
+				reqvalue = 1000,
+				endrangevalue = 2500,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "FSSJ",
+				reqvalue = 2501,
+				endrangevalue = 6000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ",
+				reqvalue = 6001,
+				endrangevalue = 16000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ Kaioken",
+				reqvalue = 16001,
+				endrangevalue = 34000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ2",
+				reqvalue = 34001,
+				endrangevalue = 50000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ2 Kaioken",
+				reqvalue = 50001,
+				endrangevalue = 65000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ2 Majin",
+				reqvalue = 65001,
+				endrangevalue = 95000,
+				alignment = "Evil",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ3",
+				reqvalue = 95001,
+				endrangevalue = 140000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "LSSJ",
+				reqvalue = 140001,
+				endrangevalue = 200000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "LSSJ Kaioken",
+				reqvalue = 160001,
+				endrangevalue = 200000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "Mystic",
+				reqvalue = 200001,
+				endrangevalue = 300000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "Mystic Kaioken",
+				reqvalue = 250001,
+				endrangevalue = 300000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ4",
+				reqvalue = 300001,
+				endrangevalue = 450000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJG",
+				reqvalue = 450001,
+				endrangevalue = 700000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ5",
+				reqvalue = 550001,
+				endrangevalue = 700000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "Corrupt SSJ",
+				reqvalue = 700001,
+				endrangevalue = 800000,
+				alignment = "Evil",
+				rebirthReq = 0
+			},
+			{
+				name = "LSSJ3",
+				reqvalue = 800001,
+				endrangevalue = 1000000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJG4",
+				reqvalue = 1000001,
+				endrangevalue = 1400000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ Rose",
+				reqvalue = 1400001,
+				endrangevalue = 2400000,
+				alignment = "Evil",
+				rebirthReq = 0
+			},
+			{
+				name = "True Rose",
+				reqvalue = 2400001,
+				endrangevalue = 3000000,
+				alignment = "Evil",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ Berserker",
+				reqvalue = 3000001,
+				endrangevalue = 3500000,
+				alignment = "Evil",
+				rebirthReq = 1
+			},
+			{
+				name = "Dark Rose",
+				reqvalue = 3500001,
+				endrangevalue = 4000000,
+				alignment = "Evil",
+				rebirthReq = 2
+			},
+			{
+				name = "Evil SSJ",
+				reqvalue = 4000001,
+				endrangevalue = 5000000,
+				alignment = "Evil",
+				rebirthReq = 3
+			},
+			{
+				name = "Ultra Instinct Omen",
+				reqvalue = 5000001,
+				endrangevalue = 8000000,
+				alignment = "Neutral",
+				rebirthReq = 3
+			},
+			{
+				name = "Godly SSJ2",
+				reqvalue = 8000001,
+				endrangevalue = 14000000,
+				alignment = "Neutral",
+				rebirthReq = 4
+			},
+			{
+				name = "Jiren Ultra Instinct",
+				reqvalue = 14000001,
+				endrangevalue = 30000000,
+				alignment = "Evil",
+				rebirthReq = 6
+			},
+			{
+				name = "God of Destruction",
+				reqvalue = 30000001,
+				endrangevalue = 50000000,
+				alignment = "Evil",
+				rebirthReq = 10
+			},
+			{
+				name = "SSJR3",
+				reqvalue = 50000001,
+				endrangevalue = 100000000,
+				alignment = "Evil",
+				rebirthReq = 12
+			},
+			{
+				name = "LBSSJ4",
+				reqvalue = 100000001,
+				endrangevalue = 120000000,
+				alignment = "Good",
+				rebirthReq = 18
+			},
+			{
+				name = "Ultra Ego",
+				reqvalue = 120000001,
+				endrangevalue = 2000000000000000000,
+				alignment = "Evil",
+				rebirthReq = 20
+			}
+		}, -- close evil
+		Good = {
+			{
+				name = "Kaioken",
+				reqvalue = 1000,
+				endrangevalue = 2500,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "FSSJ",
+				reqvalue = 2501,
+				endrangevalue = 6000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ",
+				reqvalue = 6001,
+				endrangevalue = 16000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ Kaioken",
+				reqvalue = 16001,
+				endrangevalue = 34000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ2",
+				reqvalue = 34001,
+				endrangevalue = 65000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ2 Kaioken",
+				reqvalue = 50001,
+				endrangevalue = 65000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "Spirit SSJ",
+				reqvalue = 65001,
+				endrangevalue = 95000,
+				alignment = "Good",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ3",
+				reqvalue = 95001,
+				endrangevalue = 140000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "LSSJ",
+				reqvalue = 140001,
+				endrangevalue = 160000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "LSSJ Kaioken",
+				reqvalue = 160001,
+				endrangevalue = 200000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "Mystic",
+				reqvalue = 200001,
+				endrangevalue = 300000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "Mystic Kaioken",
+				reqvalue = 250001,
+				endrangevalue = 300000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ4",
+				reqvalue = 300001,
+				endrangevalue = 450000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJG",
+				reqvalue = 450001,
+				endrangevalue = 550000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ5",
+				reqvalue = 550001,
+				endrangevalue = 700000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ Rage",
+				reqvalue = 700001,
+				endrangevalue = 1200000,
+				alignment = "Good",
+				rebirthReq = 0
+			},
+			{
+				name = "LSSJ3",
+				reqvalue = 800001,
+				endrangevalue = 1000000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJG4",
+				reqvalue = 1000001,
+				endrangevalue = 1400000,
+				alignment = "Neutral",
+				rebirthReq = 0
+			},
+			{
+				name = "SSJ Blue",
+				reqvalue = 1200001,
+				endrangevalue = 2200000,
+				alignment = "Good",
+				rebirthReq = 0
+			},
+
+			{
+				name = "SSJB Kaioken",
+				reqvalue = 2200001,
+				endrangevalue = 3000000,
+				alignment = "Good",
+				rebirthReq = 0
+			},
+			{
+				name = "Kefla SSJ2",
+				reqvalue = 3000001,
+				endrangevalue = 3500000,
+				alignment = "Good",
+				rebirthReq = 1
+			},
+			{
+				name = "Blue Evolution",
+				reqvalue = 3500001,
+				endrangevalue = 5000000,
+				alignment = "Good",
+				rebirthReq = 2
+			},
+			{
+				name = "Ultra Instinct Omen",
+				reqvalue = 5000001,
+				endrangevalue = 8000000,
+				alignment = "Neutral",
+				rebirthReq = 3
+			},
+			{
+				name = "Godly SSJ2",
+				reqvalue = 8000001,
+				endrangevalue = 14000000,
+				alignment = "Neutral",
+				rebirthReq = 4
+			},
+			{
+				name = "Mastered Ultra Instinct",
+				reqvalue = 14000001,
+				endrangevalue = 30000000,
+				alignment = "Good",
+				rebirthReq = 6
+			},
+			{
+				name = "God of Creation",
+				reqvalue = 30000001,
+				endrangevalue = 50000000,
+				alignment = "Good",
+				rebirthReq = 10
+			},
+			{
+				name = "SSJB3",
+				reqvalue = 50000001,
+				endrangevalue = 100000000,
+				alignment = "Good",
+				rebirthReq = 12
+			},
+			{
+				name = "LBSSJ4",
+				reqvalue = 100000001,
+				endrangevalue = 120000001,
+				alignment = "Good",
+				rebirthReq = 18
+			},
+			{
+				name = "SSJBUI",
+				reqvalue = 120000001,
+				endrangevalue = 2000000000000000000,
+				alignment = "Good",
+				rebirthReq = 20
+			}
+		}
+	}
+	local quests = {
+		{
+			name = "X Fighter Trainer",
+			nickname = "X Fighter",
+			requiredValue = 0,
+			endRange = 30000,
+			planet = "Earth"
+		},
+		{
+			name = "Klirin",
+			nickname = "Klirin",
+			requiredValue = 30001,
+			endRange = 60000,
+			planet = "Earth"
+		},
+		{
+			name = "Kid Nohag",
+			nickname = "Kid Nohag",
+			requiredValue = 60001,
+			endRange = 80000,
+			planet = "Earth"
+		},
+		{
+			name = "Turtle Student",
+			nickname = "Turtle Student",
+			requiredValue = 80001,
+			endRange = 100000,
+			planet = "Earth"
+		},
+		{
+			name = "Radish",
+			nickname = "Radish",
+			requiredValue = 100001,
+			endRange = 200000,
+			planet = "Earth"
+		},
+		{
+			name = "Mapa",
+			nickname = "Mapa",
+			requiredValue = 200001,
+			endRange = 300000,
+			planet = "Earth"
+		},
+		{
+			name = "Citizen",
+			nickname = "Evil Saya",
+			requiredValue = 300001,
+			endRange = 400000,
+			planet = "Earth"
+		},
+		{
+			name = "Top X Fighter",
+			nickname = "X Fighter Master",
+			requiredValue = 400001,
+			endRange = 750000,
+			planet = "Earth"
+		},
+		{
+			name = "Super Vegetable",
+			nickname = "Super Vegetable",
+			requiredValue = 750001,
+			endRange = 1000000,
+			planet = "Earth"
+		},
+		{
+			name = "Chilly",
+			nickname = "Chilly",
+			requiredValue = 100001,
+			endRange = 1000000,
+			planet = "Earth"
+		},
+		{
+			name = "Perfect Atom",
+			nickname = "Perfect Atom",
+			requiredValue = 1000001,
+			endRange = 2100000,
+			planet = "Earth"
+		},
+		{
+			name = "SSJ2 Wukong",
+			nickname = "SSJ2 Wukong",
+			requiredValue = 2100001,
+			endRange = 3000000,
+			planet = "Earth"
+		},
+		{
+			name = "SSJB Wukong",
+			nickname = "SSJB Wukong",
+			requiredValue = 3000001,
+			endRange = 12500000,
+			planet = "Earth"
+		},
+		{
+			name = "Broccoli",
+			nickname = "Broccoli",
+			requiredValue = 12500001,
+			endRange = 37500000,
+			planet = "Earth"
+		},
+		{
+			name = "SSJG Kakata",
+			nickname = "SSJG Kakata",
+			requiredValue = 37500001,
+			endRange = 200000000,
+			planet = "Earth"
+		},
+		{
+			name = "Vegetable (GoD in-training)",
+			nickname = "Vegetable (GoD in-training)",
+			requiredValue = 200000001,
+			endRange = 210000000,
+			planet = "Bills"
+		},
+		{
+			name = "Wukong (Omen)",
+			nickname = "Wukong (Omen)",
+			requiredValue = 210000001,
+			endRange = 600000000,
+			planet = "Bills"
+		},
+		{
+			name = "Vills (50%)",
+			nickname = "Vills (50%)",
+			requiredValue = 600000001,
+			endRange = 250000000,
+			planet = "Bills"
+		},
+		{
+			name = "Vis (20%)",
+			nickname = "Vis (20%)",
+			requiredValue = 250000001,
+			endRange = 450000000,
+			planet = "Bills"
+		},
+		{
+			name = "Vegetable (LBSSJ4)",
+			nickname = "Vegetable (LBSSJ4)",
+			requiredValue = 550000001,
+			endRange = 1000000000,
+			planet = "Bills"
+		},
+		{
+			name = "Wukong (LBSSJ4)",
+			nickname = "Wukong (LBSSJ4)",
+			requiredValue = 1000000001,
+			endRange = 1600000000,
+			planet = "Bills"
+		},
+		{
+			name = "Vekuta (LBSSJ4)",
+			nickname = "Vekuta (LBSSJ4)",
+			requiredValue = 1600000001,
+			endRange = 3000000000,
+			planet = "Bills"
+		},
+		{
+			name = "Wukong Rose",
+			nickname = "Wukong Rose",
+			requiredValue = 3000000001,
+			endRange = 8000000000,
+			planet = "Bills"
+		},
+		{
+			name = "Vekuta (SSJBUI)",
+			nickname = "Vekuta (SSJBUI)",
+			requiredValue = 8000000001,
+			endRange = 2000000000000000000,
+			planet = "Bills"
+		}
+	}
+	local function check1()
+		local checkValue = getCheckValue()
+		if checkValue >= 200000000 and game.placeId ~= 5151400895 then
+			data = game.ReplicatedStorage.Datas[game.Players.LocalPlayer.UserId]
+			if data.Zeni.Value >= 15000 then
+				local A_1 = "Vills Planet"
+				local Event = game:GetService("ReplicatedStorage").Package.Events.TP
+				Event:InvokeServer(A_1)
+				tp = false
+				return tp
+			else
+				SelectedQuests = "SSJG Kakata"
+				SelectedMobs = "SSJG Kakata"
+				tp = false
+				return SelectedQuests, SelectedMobs, tp
+			end
+		end
+		if checkValue <= 200000000 and game.placeId == 5151400895 then
+			if checkValue < 200000000 and game.placeId ~= 3311165597 then
+				local A_1 = "Earth"
+				local Event = game:GetService("ReplicatedStorage").Package.Events.TP
+				Event:InvokeServer(A_1)
+				wait(8)
+			end
+		end
+	end
+	function target()
+		targetted = game.Players.LocalPlayer.name
+	end
+	target()
+	repeat
+		task.wait()
+	until game:GetService("Players").LocalPlayer and game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main")
+
+	if game.PlaceId == 3311165597 then
+		local Character = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer:WaitForChild("Character")
+		local PlayeGui = game:GetService("Players").LocalPlayer.PlayerGui
+		local Starter = PlayeGui:FindFirstChild("Start")
+		if Starter then
+			game:GetService("Players").LocalPlayer.PlayerGui.Start.New:Destroy()
+			game.ReplicatedStorage.Package.Events.Start:InvokeServer()
+			Character.Humanoid.Health = 0
+		end
+	end
+
+	function target()
+		targetted = game.Players.LocalPlayer.name
+	end
+	target()
+	local function deadcheck()
+		pcall(function()
+			wait()
+			if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+				getgenv().dead = true
+				getgenv().stackneeded = true
+				autoFarmLoopRunning = false
+				flying = false
+				return getgenv().dead, getgenv().stackneeded, autoFarmLoopRunning, flying
+			else
+				getgenv().dead = false
+				return getgenv().dead
+			end
+		end)
+	end
+	local function autostack(stack1)
+		pcall(function()
+			targetted = game.Players.LocalPlayer.name
+			data = game.ReplicatedStorage.Datas[game.Players.LocalPlayer.UserId]
+			if stack1 == true and data.Energy.Value > 8000000 and getgenv().dead == false then
+				wait(1)
+				
+				game.workspace.Living[targetted].UpperTorso:Destroy()
+				wait(5)
+				 Remote = game.ReplicatedStorage.Package.Events['equipskill']
+				 Arguments = {
+					[1] = "Godly SSJ2"
+				}
+				Remote:InvokeServer(unpack(Arguments))
+			 Remote = game.ReplicatedStorage.Package.Events['ta']
+				i = 0
+				repeat
+					Remote:InvokeServer(unpack(Arguments))
+					i = i + 1
+					wait(.1)
+				until i == 15
+				wait()
+				getgenv().stackneeded = false
+				transformStatus = true
+				autoFarmLoopRunning = true
+				flying = false
+				return transformStatus, autoFarmLoopRunning , flying
+			elseif stack1 == false then
+				getgenv().stackneeded = false
+				transformStatus = true
+				autoFarmLoopRunning = true
+				flying = false
+				return transformStatus, autoFarmLoopRunning , flying
+			elseif stack1 == true and data.Energy.Value < 8000000 then
+				wait()
+				getgenv().stackneeded = false
+				transformStatus = true
+				autoFarmLoopRunning = true
+				flying = false
+				return transformStatus, autoFarmLoopRunning , flying
+			end
+		end)
+	end
+	local function getQuest()
+		local checkValue = getCheckValue()
+		local previousQuestName -- Variable to keep track of the previous quest's name for switch == 1
+		for i, quest in ipairs(quests) do
+			if checkValue >= quest.requiredValue and checkValue <= quest.endRange then
+				currentQuestIndex = i
+				if switch == 1 then
+					SelectedQuests = quest.name
+					SelectedMobs = quest.nickname
+					planet1 = quest.planet
+					return SelectedQuests, SelectedMobs, planet1 -- exit the loop if a quest is found
+				elseif switch == 2 then
+					if currentQuestIndex >= 2 then
+						for j = i - 1, 1, -1 do -- search for the previous quest
+							local prevQuest = quests[j]
+							if planet1 == prevQuest.planet then
+								SelectedQuests = prevQuest.name
+								SelectedMobs = prevQuest.nickname
+								sameplanet = true
+								return SelectedQuests, SelectedMobs, sameplanet -- exit the loop once the previous quest is found
+							else
+								sameplanet = false
+								switch = 1
+								SelectedQuests = quest.name
+								SelectedMobs = quest.nickname
+								return SelectedQuests, SelectedMobs, switch, sameplanet
+							end
+						end
+					elseif currentQuestIndex <= 1 then
+						SelectedQuests = quest.name
+						SelectedMobs = quest.nickname
+						switch = 1
+						return SelectedQuests, SelectedMobs, switch
+					end
+					break -- exit the loop if a quest is found (could also remove this line if the loop should continue searching for quests)
+				end
+			end
+		end
+	end
+
+-- Function
+	
+pcall(function()
+    wait(1)
+    check1()
+
+    repeat
+
+        startgame()
+
+    until game.workspace.Living[targetted]
+
+end)
+
+	local Main = Instance.new("ScreenGui")
+
+local View = Instance.new("Frame")
+
+local elements = {
+    uititle = Instance.new("TextLabel"),
+    UIStroke = Instance.new("UIStroke"),
+    Strength = Instance.new("TextLabel"),
+    Speed = Instance.new("TextLabel"),
+    Defense = Instance.new("TextLabel"),
+    Rebirths = Instance.new("TextLabel"),
+    Zeni = Instance.new("TextLabel"),
+    Multiplier = Instance.new("TextLabel"),
+    Allignment = Instance.new("TextLabel"),
+    CurrentForm = Instance.new("TextLabel"),
+    SelectedForm = Instance.new("TextLabel"),
+    Quest = Instance.new("TextLabel"),
+    Select = Instance.new("TextBox"),
+    Strength1 = Instance.new("TextLabel"),
+    Speed1 = Instance.new("TextLabel"),
+    Defense1 = Instance.new("TextLabel"),
+    Rebirths1 = Instance.new("TextLabel"),
+    Zeni1 = Instance.new("TextLabel"),
+    Multiplier1 = Instance.new("TextLabel"),
+    Allignment1 = Instance.new("TextLabel"),
+    Quest1 = Instance.new("TextLabel"),
+    SelectedForm1 = Instance.new("TextLabel"),
+    CurrentForm1 = Instance.new("TextLabel"),
+    UIStroke_2 = Instance.new("UIStroke"),
+    UICorner = Instance.new("UICorner"),
+    Energy = Instance.new("TextLabel"),
+    Energy1 = Instance.new("TextLabel"),
+    Selected = Instance.new("TextBox"),
+}
+	pcall(function()
+		repeat
+			wait()
+		until Main
+	end)
+	--Properties:
+	local CharacterStats = game:GetService("Players").LocalPlayer.Character.Stats
+	local StatsSource = game:GetService("ReplicatedStorage").Datas[tostring(game:GetService("Players").LocalPlayer.UserId)]
+	
+	
+	
+	Main.Name = "Stats Reader Updated"
+	Main.Parent = (game:GetService("CoreGui") or gethui())
+	
+	View.Parent = Main
+	View.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+	View.BackgroundTransparency = 0.550
+	View.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	View.BorderSizePixel = 0
+	View.Position = UDim2.new(0.160512194, 0, 0.178663239, 0)
+	View.Size = UDim2.new(0, 275, 0, 404)
+	View.Active	= true
+	View.Visible = false
+	
+	elements.uititle.Name = "uititle"
+	elements.uititle.Parent = View
+	elements.uititle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.uititle.BackgroundTransparency = 1.000
+	elements.uititle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.uititle.BorderSizePixel = 0
+	elements.uititle.Size = UDim2.new(0, 275, 0, 38)
+	elements.uititle.Font = Enum.Font.SourceSans
+	elements.uititle.Text = "Stats Reader"
+	elements.uititle.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.uititle.TextScaled = true
+	elements.uititle.TextSize = 14.000
+	elements.uititle.TextWrapped = true
+	
+	elements.UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	elements.UIStroke.Color = Color3.fromRGB(255, 255, 255)
+	elements.UIStroke.Thickness = 1.700
+	elements.UIStroke.Parent = elements.uititle
+	
+	elements.Strength.Name = "Strength"
+	elements.Strength.Parent = View
+	elements.Strength.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Strength.BackgroundTransparency = 1.000
+	elements.Strength.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Strength.BorderSizePixel = 0
+	elements.Strength.Position = UDim2.new(0, 0, 0.136231884, 0)
+	elements.Strength.Size = UDim2.new(0, 100, 0, 22)
+	elements.Strength.Font = Enum.Font.SourceSans
+	elements.Strength.Text = "Strength:"
+	elements.Strength.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Strength.TextScaled = true
+	elements.Strength.TextSize = 14.000
+	elements.Strength.TextWrapped = true
+	
+	elements.Speed.Name = "Speed"
+	elements.Speed.Parent = View
+	elements.Speed.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Speed.BackgroundTransparency = 1.000
+	elements.Speed.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Speed.BorderSizePixel = 0
+	elements.Speed.Position = UDim2.new(0, 0, 0.200000003, 0)
+	elements.Speed.Size = UDim2.new(0, 100, 0, 22)
+	elements.Speed.Font = Enum.Font.SourceSans
+	elements.Speed.Text = "Speed:"
+	elements.Speed.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Speed.TextScaled = true
+	elements.Speed.TextSize = 14.000
+	elements.Speed.TextWrapped = true
+	
+	elements.Defense.Name = "Defense"
+	elements.Defense.Parent = View
+	elements.Defense.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Defense.BackgroundTransparency = 1.000
+	elements.Defense.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Defense.BorderSizePixel = 0
+	elements.Defense.Position = UDim2.new(0, 0, 0.263768107, 0)
+	elements.Defense.Size = UDim2.new(0, 100, 0, 22)
+	elements.Defense.Font = Enum.Font.SourceSans
+	elements.Defense.Text = "Defense:"
+	elements.Defense.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Defense.TextScaled = true
+	elements.Defense.TextSize = 14.000
+	elements.Defense.TextWrapped = true
+	
+	elements.Rebirths.Name = "Rebirths"
+	elements.Rebirths.Parent = View
+	elements.Rebirths.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Rebirths.BackgroundTransparency = 1.000
+	elements.Rebirths.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Rebirths.BorderSizePixel = 0
+	elements.Rebirths.Position = UDim2.new(0, 0, 0.391304344, 0)
+	elements.Rebirths.Size = UDim2.new(0, 100, 0, 22)
+	elements.Rebirths.Font = Enum.Font.SourceSans
+	elements.Rebirths.Text = "Rebirths:"
+	elements.Rebirths.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Rebirths.TextScaled = true
+	elements.Rebirths.TextSize = 14.000
+	elements.Rebirths.TextWrapped = true
+	
+	elements.Zeni.Name = "Zeni"
+	elements.Zeni.Parent = View
+	elements.Zeni.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Zeni.BackgroundTransparency = 1.000
+	elements.Zeni.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Zeni.BorderSizePixel = 0
+	elements.Zeni.Position = UDim2.new(0, 0, 0.455072463, 0)
+	elements.Zeni.Size = UDim2.new(0, 100, 0, 22)
+	elements.Zeni.Font = Enum.Font.SourceSans
+	elements.Zeni.Text = "Zeni:"
+	elements.Zeni.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Zeni.TextScaled = true
+	elements.Zeni.TextSize = 14.000
+	elements.Zeni.TextWrapped = true
+	
+	elements.Multiplier.Name = "Multiplier"
+	elements.Multiplier.Parent = View
+	elements.Multiplier.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Multiplier.BackgroundTransparency = 1.000
+	elements.Multiplier.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Multiplier.BorderSizePixel = 0
+	elements.Multiplier.Position = UDim2.new(0, 0, 0.518840551, 0)
+	elements.Multiplier.Size = UDim2.new(0, 100, 0, 22)
+	elements.Multiplier.Font = Enum.Font.SourceSans
+	elements.Multiplier.Text = "Multiplier:"
+	elements.Multiplier.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Multiplier.TextScaled = true
+	elements.Multiplier.TextSize = 14.000
+	elements.Multiplier.TextWrapped = true
+	
+	elements.Allignment.Name = "Allignment"
+	elements.Allignment.Parent = View
+	elements.Allignment.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Allignment.BackgroundTransparency = 1.000
+	elements.Allignment.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Allignment.BorderSizePixel = 0
+	elements.Allignment.Position = UDim2.new(0, 0, 0.5826087, 0)
+	elements.Allignment.Size = UDim2.new(0, 100, 0, 22)
+	elements.Allignment.Font = Enum.Font.SourceSans
+	elements.Allignment.Text = "Allignment:"
+	elements.Allignment.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Allignment.TextScaled = true
+	elements.Allignment.TextSize = 14.000
+	elements.Allignment.TextWrapped = true
+
+	elements.CurrentForm.Name = "CurrentForm"
+	elements.CurrentForm.Parent = View
+	elements.CurrentForm.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.CurrentForm.BackgroundTransparency = 1.000
+	elements.CurrentForm.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.CurrentForm.BorderSizePixel = 0
+	elements.CurrentForm.Position = UDim2.new(0, 0, 0.646376789, 0)
+	elements.CurrentForm.Size = UDim2.new(0, 100, 0, 22)
+	elements.CurrentForm.Font = Enum.Font.SourceSans
+	elements.CurrentForm.Text = "Current Form:"
+	elements.CurrentForm.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.CurrentForm.TextScaled = true
+	elements.CurrentForm.TextSize = 14.000
+	elements.CurrentForm.TextWrapped = true
+	
+	elements.SelectedForm.Name = "SelectedForm"
+	elements.SelectedForm.Parent = View
+	elements.SelectedForm.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.SelectedForm.BackgroundTransparency = 1.000
+	elements.SelectedForm.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.SelectedForm.BorderSizePixel = 0
+	elements.SelectedForm.Position = UDim2.new(0, 0, 0.710144937, 0)
+	elements.SelectedForm.Size = UDim2.new(0, 100, 0, 22)
+	elements.SelectedForm.Font = Enum.Font.SourceSans
+	elements.SelectedForm.Text = "Seletected Form:"
+	elements.SelectedForm.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.SelectedForm.TextScaled = true
+	elements.SelectedForm.TextSize = 14.000
+	elements.SelectedForm.TextWrapped = true
+
+	elements.Quest.Name = "Quest"
+	elements.Quest.Parent = View
+	elements.Quest.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Quest.BackgroundTransparency = 1.000
+	elements.Quest.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Quest.BorderSizePixel = 0
+	elements.Quest.Position = UDim2.new(0, 0, 0.773913026, 0)
+	elements.Quest.Size = UDim2.new(0, 100, 0, 22)
+	elements.Quest.Font = Enum.Font.SourceSans
+	elements.Quest.Text = "Current Quest:"
+	elements.Quest.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Quest.TextScaled = true
+	elements.Quest.TextSize = 14.000
+	elements.Quest.TextWrapped = true
+
+	elements.Select.Name = "Select"
+	elements.Select.Parent = View
+	elements.Select.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+	elements.Select.BackgroundTransparency = 0.550
+	elements.Select.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Select.BorderSizePixel = 0
+	elements.Select.Position = UDim2.new(0.0333055519, 0, 0.857971013, 0)
+	elements.Select.Size = UDim2.new(0, 128, 0, 37)
+	elements.Select.Font = Enum.Font.SourceSans
+	elements.Select.PlaceholderText = "Player name here!"
+	elements.Select.Text = ""
+	elements.Select.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Select.TextScaled = true
+	elements.Select.TextSize = 14.000
+	elements.Select.TextWrapped = true
+	
+	elements.Strength1.Name = "Strength1"
+	elements.Strength1.Parent = View
+	elements.Strength1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Strength1.BackgroundTransparency = 1.000
+	elements.Strength1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Strength1.BorderSizePixel = 0
+	elements.Strength1.Position = UDim2.new(0.469213635, 0, 0.136231899, 0)
+	elements.Strength1.Size = UDim2.new(0, 127, 0, 22)
+	elements.Strength1.Font = Enum.Font.SourceSans
+	elements.Strength1.Text = "-"
+	elements.Strength1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Strength1.TextScaled = true
+	elements.Strength1.TextSize = 14.000
+	elements.Strength1.TextWrapped = true
+
+	elements.Speed1.Name = "Speed1"
+	elements.Speed1.Parent = View
+	elements.Speed1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Speed1.BackgroundTransparency = 1.000
+	elements.Speed1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Speed1.BorderSizePixel = 0
+	elements.Speed1.Position = UDim2.new(0.469213635, 0, 0.200000003, 0)
+	elements.Speed1.Size = UDim2.new(0, 127, 0, 22)
+	elements.Speed1.Font = Enum.Font.SourceSans
+	elements.Speed1.Text = "-"
+	elements.Speed1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Speed1.TextScaled = true
+	elements.Speed1.TextSize = 14.000
+	elements.Speed1.TextWrapped = true
+
+	elements.Defense1.Name = "Defense1"
+	elements.Defense1.Parent = View
+	elements.Defense1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Defense1.BackgroundTransparency = 1.000
+	elements.Defense1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Defense1.BorderSizePixel = 0
+	elements.Defense1.Position = UDim2.new(0.469213635, 0, 0.263768107, 0)
+	elements.Defense1.Size = UDim2.new(0, 127, 0, 22)
+	elements.Defense1.Font = Enum.Font.SourceSans
+	elements.Defense1.Text = "-"
+	elements.Defense1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Defense1.TextScaled = true
+	elements.Defense1.TextSize = 14.000
+	elements.Defense1.TextWrapped = true
+	
+	elements.Rebirths1.Name = "Rebirths1"
+	elements.Rebirths1.Parent = View
+	elements.Rebirths1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Rebirths1.BackgroundTransparency = 1.000
+	elements.Rebirths1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Rebirths1.BorderSizePixel = 0
+	elements.Rebirths1.Position = UDim2.new(0.469213635, 0, 0.391304404, 0)
+	elements.Rebirths1.Size = UDim2.new(0, 127, 0, 22)
+	elements.Rebirths1.Font = Enum.Font.SourceSans
+	elements.Rebirths1.Text = "-"
+	elements.Rebirths1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Rebirths1.TextScaled = true
+	elements.Rebirths1.TextSize = 14.000
+	elements.Rebirths1.TextWrapped = true
+
+	elements.Zeni1.Name = "Zeni1"
+	elements.Zeni1.Parent = View
+	elements.Zeni1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Zeni1.BackgroundTransparency = 1.000
+	elements.Zeni1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Zeni1.BorderSizePixel = 0
+	elements.Zeni1.Position = UDim2.new(0.469213635, 0, 0.455072463, 0)
+	elements.Zeni1.Size = UDim2.new(0, 127, 0, 22)
+	elements.Zeni1.Font = Enum.Font.SourceSans
+	elements.Zeni1.Text = "-"
+	elements.Zeni1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Zeni1.TextScaled = true
+	elements.Zeni1.TextSize = 14.000
+	elements.Zeni1.TextWrapped = true
+
+	elements.Multiplier1.Name = "Multiplier1"
+	elements.Multiplier1.Parent = View
+	elements.Multiplier1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Multiplier1.BackgroundTransparency = 1.000
+	elements.Multiplier1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Multiplier1.BorderSizePixel = 0
+	elements.Multiplier1.Position = UDim2.new(0.469213635, 0, 0.518840551, 0)
+	elements.Multiplier1.Size = UDim2.new(0, 127, 0, 22)
+	elements.Multiplier1.Font = Enum.Font.SourceSans
+	elements.Multiplier1.Text = "-"
+	elements.Multiplier1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Multiplier1.TextScaled = true
+	elements.Multiplier1.TextSize = 14.000
+	elements.Multiplier1.TextWrapped = true
+
+	elements.Allignment1.Name = "Allignment1"
+	elements.Allignment1.Parent = View
+	elements.Allignment1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Allignment1.BackgroundTransparency = 1.000
+	elements.Allignment1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Allignment1.BorderSizePixel = 0
+	elements.Allignment1.Position = UDim2.new(0.469213635, 0, 0.58260864, 0)
+	elements.Allignment1.Size = UDim2.new(0, 127, 0, 22)
+	elements.Allignment1.Font = Enum.Font.SourceSans
+	elements.Allignment1.Text = "-"
+	elements.Allignment1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Allignment1.TextScaled = true
+	elements.Allignment1.TextSize = 14.000
+	elements.Allignment1.TextWrapped = true
+	
+	elements.Quest1.Name = "Quest1"
+	elements.Quest1.Parent = View
+	elements.Quest1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Quest1.BackgroundTransparency = 1.000
+	elements.Quest1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Quest1.BorderSizePixel = 0
+	elements.Quest1.Position = UDim2.new(0.469213635, 0, 0.773913026, 0)
+	elements.Quest1.Size = UDim2.new(0, 127, 0, 22)
+	elements.Quest1.Font = Enum.Font.SourceSans
+	elements.Quest1.Text = "-"
+	elements.Quest1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Quest1.TextScaled = true
+	elements.Quest1.TextSize = 14.000
+	elements.Quest1.TextWrapped = true
+
+	elements.SelectedForm1.Name = "SelectedForm1"
+	elements.SelectedForm1.Parent = View
+	elements.SelectedForm1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.SelectedForm1.BackgroundTransparency = 1.000
+	elements.SelectedForm1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.SelectedForm1.BorderSizePixel = 0
+	elements.SelectedForm1.Position = UDim2.new(0.469213635, 0, 0.710144937, 0)
+	elements.SelectedForm1.Size = UDim2.new(0, 127, 0, 22)
+	elements.SelectedForm1.Font = Enum.Font.SourceSans
+	elements.SelectedForm1.Text = "-"
+	elements.SelectedForm1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.SelectedForm1.TextScaled = true
+	elements.SelectedForm1.TextSize = 14.000
+	elements.SelectedForm1.TextWrapped = true
+
+	elements.CurrentForm1.Name = "CurrentForm1"
+	elements.CurrentForm1.Parent = View
+	elements.CurrentForm1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.CurrentForm1.BackgroundTransparency = 1.000
+	elements.CurrentForm1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.CurrentForm1.BorderSizePixel = 0
+	elements.CurrentForm1.Position = UDim2.new(0.469213635, 0, 0.646376789, 0)
+	elements.CurrentForm1.Size = UDim2.new(0, 127, 0, 22)
+	elements.CurrentForm1.Font = Enum.Font.SourceSans
+	elements.CurrentForm1.Text = "-"
+	elements.CurrentForm1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.CurrentForm1.TextScaled = true
+	elements.CurrentForm1.TextSize = 14.000
+	elements.CurrentForm1.TextWrapped = true
+
+	elements.UIStroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	elements.UIStroke_2.Color = Color3.fromRGB(255, 255, 255)
+	elements.UIStroke_2.Thickness = 1.700
+	elements.UIStroke_2.Parent = View
+	
+	elements.UICorner.CornerRadius = UDim.new(0, 5)
+	elements.UICorner.Parent = View
+	
+	elements.Energy.Name = "Energy"
+	elements.Energy.Parent = View
+	elements.Energy.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Energy.BackgroundTransparency = 1.000
+	elements.Energy.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Energy.BorderSizePixel = 0
+	elements.Energy.Position = UDim2.new(0, 0, 0.327536225, 0)
+	elements.Energy.Size = UDim2.new(0, 100, 0, 22)
+	elements.Energy.Font = Enum.Font.SourceSans
+	elements.Energy.Text = "Energy:"
+	elements.Energy.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Energy.TextScaled = true
+	elements.Energy.TextSize = 14.000
+	elements.Energy.TextWrapped = true
+	
+	elements.Energy1.Name = "Energy1"
+	elements.Energy1.Parent = View
+	elements.Energy1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Energy1.BackgroundTransparency = 1.000
+	elements.Energy1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Energy1.BorderSizePixel = 0
+	elements.Energy1.Position = UDim2.new(0.469213635, 0, 0.327536255, 0)
+	elements.Energy1.Size = UDim2.new(0, 127, 0, 22)
+	elements.Energy1.Font = Enum.Font.SourceSans
+	elements.Energy1.Text = "-"
+	elements.Energy1.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Energy1.TextScaled = true
+	elements.Energy1.TextSize = 14.000
+	elements.Energy1.TextWrapped = true
+	
+	elements.Selected.Name = "Selected"
+	elements.Selected.Parent = View
+	elements.Selected.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+	elements.Selected.BackgroundTransparency = 0.550
+	elements.Selected.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	elements.Selected.BorderSizePixel = 0
+	elements.Selected.Position = UDim2.new(0.522230864, 0, 0.857971013, 0)
+	elements.Selected.Size = UDim2.new(0, 125, 0, 37)
+	elements.Selected.Font = Enum.Font.SourceSans
+	elements.Selected.PlaceholderText = "Current Player!"
+	elements.Selected.Text = ""
+	elements.Selected.TextColor3 = Color3.fromRGB(255, 255, 255)
+	elements.Selected.TextScaled = true
+	elements.Selected.TextSize = 14.000
+	elements.Selected.TextWrapped = true
+	elements.Selected.TextEditable = false
+	elements.Selected.ClearTextOnFocus = false
+	
+	-- Scripts:
+	
+	local function DBYP_fake_script() -- View.Dragify 
+		local script = Instance.new('LocalScript', View)
+	
+		local UserInputService = game:GetService("UserInputService")
+		
+		local gui = script.Parent
+		
+		dragging = false
+		local dragInput
+		local dragStart
+		local startPos
+		
+		local function update(input)
+			local delta = input.Position - dragStart
+			gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		end
+		
+		gui.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				dragStart = input.Position
+				startPos = gui.Position
+		
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
+			end
+		end)
+		
+		gui.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		
+		UserInputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging then
+				update(input)
+			end
+		end)
+	end
+	coroutine.wrap(DBYP_fake_script)()
+	local function g(h)
+		return h:gsub("%s+", "") or h
+	end
+	local function Findplayer(h, h2)
+		if string.lower(h) == "me" then
+			if h2 then
+				return h2
+			else
+				return game.Players.Player.Name
+			end
+		else
+			h = g(h)
+			for m, n in pairs(game.Players:GetPlayers()) do
+				if n.Name:lower():match("^" .. h:lower()) or n.DisplayName:lower():match("^" .. h:lower()) then
+					return n.Name
+				end
+			end
+		end
+		return nil
+	end
+	
+	function Format(n)
+		local n = tostring(n)
+		local f = {
+			"",
+			"K",
+			"M",
+			"B",
+			"T",
+			"Q",
+			"Qd",
+			"Qt",
+			"Se",
+			"Sp",
+		}
+		local s = n:sub(1, (#n - 1) % 3 + 1)
+		local a = n:sub(#s + 1, #s + 1)
+		local av = ""
+		if tonumber(a) and #s > 0 and tonumber(a) > 0 then
+			av = "." .. a
+		end
+		return s .. av .. f[math.floor((#n - 1) / 3) + 1]
+	end
+
+	local statValues = {
+		energybar = game:GetService("Players").LocalPlayer.PlayerGui.Main.MainFrame.Bars.Energy.TextLabel,
+		healthbar = game:GetService("Players").LocalPlayer.PlayerGui.Main.MainFrame.Bars.Health.TextLabel,
+		Defense = game:GetService("Players").LocalPlayer.PlayerGui.Main.MainFrame.Frames.Stats.Defense,
+		Speed = game:GetService("Players").LocalPlayer.PlayerGui.Main.MainFrame.Frames.Stats.Speed,
+		Energy = game:GetService("Players").LocalPlayer.PlayerGui.Main.MainFrame.Frames.Stats.Energy,
+		Strength = game:GetService("Players").LocalPlayer.PlayerGui.Main.MainFrame.Frames.Stats.Strength,
+		Rebirth = game:GetService("Players").LocalPlayer.PlayerGui.Main.MainFrame.Frames.Stats.Rebirth,
+		Zeni = StatsSource.Zeni.Value,
+		StrengthValue = StatsSource.Strength.Value,
+		SpeedValue = StatsSource.Speed.Value,
+	DefenseValue = StatsSource.Defense.Value,
+	EnergyValue = StatsSource.Energy.Value,
+	CharacterStats = game:GetService("Players").LocalPlayer.Character.Stats,
+	FormStrength = CharacterStats.Strength.Value,
+	FormSpeed = CharacterStats.Speed.Value,
+	FormDefense = CharacterStats.Defense.Value,
+	FormEnergy = CharacterStats.Energy.Value,
+	currentHealth = game:GetService("Players").LocalPlayer.Character.Humanoid.Health,
+	maxHealth = game:GetService("Players").LocalPlayer.Character.Humanoid.MaxHealth,
+	currentEnergy = game:GetService("Players").LocalPlayer.Character.Stats.Ki.Value,
+	MaxEnergy = game:GetService("Players").LocalPlayer.Character.Stats.Ki.MaxValue,
+	TransfromValue = game:GetService("Players").LocalPlayer.Status.Transformation.Value,
+	ZeniValue = game:GetService("Players").LocalPlayer.PlayerGui.Main.MainFrame.Indicator.Zeni
+
+	}
+	
+	function UpdateText(c)
+		elements.Selected.Text = c.Name
+		local StatsQuest = getrenv()._G.x.GetRecommendedQuest(c)
+		
+		elements.Strength1.Text = Format(statValues.Strength)
+		elements.Speed1.Text = Format(statValues.Speed)
+		elements.Defense1.Text = Format(statValues.Defense)
+		elements.Energy1.Text = Format(statValues.Energy)
+		elements.Rebirths1.Text = statValues.Rebirth
+		elements.Zeni1.Text = Format(statValues.StatsMoney)
+		elements.Multiplier1.Text = game:GetService("ReplicatedStorage").Datas[tostring(c.UserId)].Rebirth.Value * 0.2 + 1
+		elements.Allignment1.Text = game:GetService("ReplicatedStorage").Datas[tostring(c.UserId)].Allignment.Value
+		elements.CurrentForm1.Text = c.Status.Transformation.Value
+		elements.SelectedForm1.Text = c.Status.SelectedTransformation.Value
+		elements.Quest1.Text = StatsQuest
+	end
+	
+	elements.Select.FocusLost:Connect(function(a)
+		if a then
+			a = Findplayer(Select.Text)
+			if a then
+				while a and View.Visible do
+					if not a then
+						break
+					end
+					task.wait()
+					UpdateText(game:GetService("Players"):FindFirstChild(a))
+				end
+			else
+				Selected.Text = "Player not found"
+			end
+		end
+	end) 
+	getgenv().SecureMode = true
+	local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/N17S3/Lib/main/Rayfield"))()
+	local Window = Rayfield:CreateWindow({
+		Name = "Dragon Blox Ultimate | Premium | V2.3",
+		LoadingTitle = "DBU Main",
+		LoadingSubtitle = "by Zack and Orbital",
+		ConfigurationSaving = {
+			Enabled = true,
+			FolderName = "Save", -- Create a custom folder for your hub/game
+			FileName = "DBU Premium"
+		},
+		Discord = {
+			Enabled = false,
+			Invite = "", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD -- HZRXDBysXY
+			RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+		},
+		KeySystem = false, -- Set this to true to use our key system
+		KeySettings = {
+			Title = "DBU",
+			Subtitle = "Key System",
+			Note = "Hello there",
+			FileName = "10894504209872591079059474107107510771097071097", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+			SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+			GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+			Key = {
+				""
+			} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+		}
+	})
+	Rayfield:Notify({
+		Title = "Loaded",
+		Content = "Welcome Premium User",
+		Duration = 6.5,
+		Image = 4483362458,
+	})
+
+	
+
+
+	
+	
+	
+	
+	
+
+
+
+
+
+
+	
+	
+
+	local Http = game:GetService("HttpService")
+	local TPS = game:GetService("TeleportService")
+	local Api = "https://games.roblox.com/v1/games/"
+	local _place, _id = game.PlaceId, game.JobId
+	local _servers = Api .. _place .. "/servers/Public?sortOrder=Desc&limit=100"
+	--local questcheck = getrenv()._G.x.GetRecommendedQuest(game:GetService("Players").LocalPlayer)
+	local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+	local autofarm
+	getgenv().stackneeded = true
+
+	local Tab1 = Window:CreateTab("Main", 4483362458)
+	local Section1 = Tab1:CreateSection("Auto-Farm Stuff")
+
+	local AutoFarming = Tab1:CreateToggle({
+		Name = "Auto-Farm",
+		CurrentValue = false,
+		Flag = "Toggle1",
+		Callback = function(Value)
+			if Value then
+				autofarm = true
+			else
+				autofarm = false
+				pcall(function()
+					game.Workspace.Living:WaitForChild(targetted)
+					game.Workspace.Living[targetted]:WaitForChild("HumanoidRootPart")
+					local bv = game.Workspace.Living[targetted].HumanoidRootPart:WaitForChild("BodyVelocity")
+					local bg = game.Workspace.Living[targetted].HumanoidRootPart:WaitForChild("BodyGyro")
+					bg.P = 4000
+					bg.MaxTorque = Vector3.new(500000, 500000, 500000)
+					bv.P = 1000
+					bv.MaxForce = Vector3.new(100000, 100000, 100000)
+					flying = true
+				end)
+			end
+			while autofarm == true do
+				wait()
+				if getgenv().stackneeded == true then
+					deadcheck()
+					repeat
+						wait()
+						deadcheck()
+					until getgenv().dead == false
+					if getgenv().stackneeded == true then
+						if getgenv().autostackloop == true  then
+							stack1 = true
+							autostack(stack1)
+							repeat
+								wait()
+							until getgenv().stackneeded == false
+						elseif getgenv().autostackloop == false  then
+							stack1 = false
+							autostack(stack1)
+						end
+					end
+				else
+					charge = false
+					autoFarmLoopRunning = true
+					flying = false
+					
+				end
+				checkstackreq = getCheckValue()
+				if checkstackreq < 8000000 then
+					autoFarmLoopRunning = true
+				end
+				if getgenv().rebirthed == true and game.placeId == 5151400895 then
+					wait(10)
+					return
+				elseif getgenv().rebirthed == true and game.placeId ~= 5151400895 then
+					wait(3)
+				end
+				if charge == false and getgenv().dead == false and autoFarmLoopRunning == true and autofarm == true then
+					spawn(function()
+						while autoFarmLoopRunning and autofarm == true do
+							wait()
+							if getgenv().AutoCharge == true then
+								local args = {
+									[1] = "Blacknwhite27"
+								}
+								game:GetService("ReplicatedStorage").Package.Events.cha:InvokeServer(unpack(args))
+								wait()
+							end
+						end
+					end)
+					spawn(function()
+						while autoFarmLoopRunning and autofarm == true do
+							if getgenv().AutoTransform == true then
+								wait(0.1)
+								pcall(function()
+									data = game.ReplicatedStorage.Datas[game.Players.LocalPlayer.UserId]
+									local formtouse;
+									if transformStatus == true and game.Workspace.Living[targetted].Stats.Ki.Value > 400 then
+										local value = getCheckValue()
+										local alignment = data.Allignment.Value
+										local forms = FormsList[alignment]
+										local matchFound = false  -- Initialize a flag variable to false
+										for _, form in ipairs(forms) do
+											if value >= form.reqvalue and value <= form.endrangevalue then
+												formtouse = form.name
+												matchFound = true  -- Set the flag to true when a match is found
+												break  -- Break out of the loop since a match has been found
+											end
+										end
+										if not matchFound then
+											for _, form in ipairs(forms) do
+												if  form.rebirthReq >= data.Rebirth.Value then
+													formtouse = form.name
+													break
+												end
+											end
+										end
+										equipRemote = game:GetService("ReplicatedStorage").Package.Events.equipskill
+										equipRemote:InvokeServer(formtouse)
+										repeat
+											wait()
+											if game.Players.LocalPlayer.Status.SelectedTransformation.Value ~= game.Players.LocalPlayer.Status.Transformation.Value then
+												getgenv().AutoCharge = false
+												game:GetService("ReplicatedStorage").Package.Events.ta:InvokeServer()
+											end
+										until game.Players.LocalPlayer.Status.SelectedTransformation.Value ==
+                                        game.Players.LocalPlayer.Status.Transformation.Value or
+                                        game.Workspace.Living[targetted].Stats.Ki.Value < 400
+
+
+										getgenv().AutoCharge = true
+										wait(.2)
+									end
+									
+								end)
+							end
+							wait(.2)
+						end
+					end)
+					charge = true
+				end
+				if flying == false and getgenv().dead == false and autoFarmLoopRunning == true and autofarm == true then
+					pcall(function()
+						game.Workspace.Living:WaitForChild(targetted)
+						game.Workspace.Living[targetted]:WaitForChild("HumanoidRootPart")
+						local bv = game.Workspace.Living[targetted].HumanoidRootPart:WaitForChild("BodyVelocity")
+						local bg = game.Workspace.Living[targetted].HumanoidRootPart:WaitForChild("BodyGyro")
+						bg.P = 0.0000000000000000000000000000000000000000000000000000000000000000001
+						bg.MaxTorque = Vector3.new(500000000, 500000000, 500000000)
+						bv.P = 0.0000000000000000000000000000000000000000000000000000000000000000001
+						bv.MaxForce = Vector3.new(100000000, 100000000, 100000000)
+						flying = true
+					end)
+				end
+				if getgenv().dead == false and getgenv().stackneeded == false and autoFarmLoopRunning == true and autofarm == true then
+					wait()
+					while autoFarmLoopRunning and autofarm == true do
+						local success, err = pcall(function()
+							while autoFarmLoopRunning and autofarm == true do
+								wait()
+								check1()
+								pcall(function()
+									while autoFarmLoopRunning and autofarm == true  do
+										if breakagain == true then
+											breakagain = false
+											break
+										end
+										if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+											for i, v in ipairs(game:GetService("Workspace").Living:GetChildren()) do
+												switch = 1
+												local checkValue = getCheckValue()
+												if checkValue >= 200000000 and game.placeId ~= 5151400895 then
+													SelectedQuests, SelectedMobs = "SSJG Kakata", "SSJG Kakata"
+												else
+													switch = 1
+													SelectedQuests, SelectedMobs, sameplanet = getQuest(switch)
+												end
+												if v.Name:lower() == SelectedMobs:lower() and game.Players.LocalPlayer.Character and
+                                                game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and
+                                                    v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and
+                                                    v.Humanoid.Health > 0 then
+													if game:GetService("ReplicatedStorage").Datas[game.Players.LocalPlayer.UserId].Quest.Value ~= SelectedQuests then -- error around here
+														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Others.NPCs[SelectedQuests]
+                                                                                                           .HumanoidRootPart.CFrame
+														repeat
+															wait()
+
+															game.ReplicatedStorage.Package.Events.Qaction:InvokeServer(game:GetService("Workspace").Others.NPCs[SelectedQuests])
+														until game:GetService("ReplicatedStorage").Datas[game.Players.LocalPlayer.UserId].Quest.Value == SelectedQuests or
+                                                                game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or not autofarm
+													end -- undefined
+													game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame +
+                                                                                                   Vector3.new(0, 0, 0)
+                                                                                                --    wait(.2)
+                                                                                                --    player = game.Players.LocalPlayer
+            
+                                                                                                --    humanoid = player.Character.Humanoid
+                                                                                                --    direction = humanoid.Parent.HumanoidRootPart.CFrame.lookVector -- Get the direction the character is facing
+                                                                                                  
+                                                                                                --    offset = Vector3.new(0, 0, -5) -- Adjust the offset to position the attack in front of the character
+                                                                                                --    attackPosition = humanoid.Parent.HumanoidRootPart.Position + direction * offset
+                                                                                                  
+                                                         
+                                                                                                local Echar = v                                       --    attackCFrame = CFrame.new(attackPosition, attackPosition + direction)
+													spawn(function()
+														repeat
+															
+						local myChar = game.Players.LocalPlayer.Character
+						myChar.HumanoidRootPart.CFrame = Echar:GetPrimaryPartCFrame() * CFrame.new(0, 0, 2)
+															wait()
+
+
+                                                            
+														until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                            game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or not autofarm
+													end)
+                                                    
+													repeat
+														
+
+														
+
+                                                        -- checkki = game.workspace.Living[targetted].Stats.Ki
+														if checkValue > 2100000 and game.Workspace.Living[targetted].Stats.Ki.Value >
+                                                            10000 and getgenv().AutoAttackst == true then -- op move stack 1
+                                                                 
+                                                            
+                                                                
+                                                            
+                                                                
+                                                           
+                                                                repeat
+                                                                
+                                                                 
+                                                                    
+                                                                        
+                                                                    
+                                                                            
+                                                                        
+																wait(.1)
+
+																
+                                                                local mel = game:GetService("ReplicatedStorage").Package.Events.mel
+                                                                                                             
+                                                                    spawn(function ()
+                                                                    mel:InvokeServer("Meteor Crash", "Blacknwhite27")
+                                                                end)
+                                                                    spawn(function ()
+                                                                    mel:InvokeServer("Vital Strike", "Blacknwhite27")
+                                                                end)
+                                                                spawn(function ()
+                                                                    mel:InvokeServer("Uppercut", "Blacknwhite27")
+                                                                end)
+                                                                spawn(function ()
+                                                                    mel:InvokeServer("Meteor Strike", "Blacknwhite27")
+                                                                end)
+                                                                spawn(function ()
+                                                                    mel:InvokeServer("High Power Rush", "Blacknwhite27")
+                                                                end)
+                                                                spawn(function ()
+                                                                    mel:InvokeServer("Meteor Strike", "Blacknwhite27")
+                                                                end)
+                                                                    spawn(function ()
+                                                                    mel:InvokeServer("Mach Kick", "Blacknwhite27")
+                                                                end)
+                                                                    spawn(function ()
+                                                                    mel:InvokeServer("Meteor Charge", "Blacknwhite27")
+                                                                end)
+                                                                    spawn(function ()
+                                                                    mel:InvokeServer("Super Dragon Fist", "Blacknwhite27")
+                                                                end)
+                                                                    spawn(function ()
+                                                                    mel:InvokeServer("Spirit Breaking Cannon", "Blacknwhite27")
+                                                                end)
+                                                                    spawn(function ()
+                                                                    mel:InvokeServer("Spirit Barrage", "Blacknwhite27")
+                                                                end)
+                                                                    spawn(function ()
+                                                                    mel:InvokeServer("Bone Crusher", "Blacknwhite27")
+                                                                end)
+                                                                    spawn(function ()
+                                                                    mel:InvokeServer("God Slicer", "Blacknwhite27")
+                                                                end)
+                                            
+                                                                spawn(function ()
+                                                                    
+                                                                                                                         
+                                                                                                                         ohTable2 = {
+                                                                                                                            ["MouseHit"] = Echar:GetPrimaryPartCFrame(),
+                                                                                                                            ["FaceMouse"] = true
+                                                                                                                        }
+                                                                                                                        
+                                                                game:GetService("ReplicatedStorage").Package.Events.voleys:InvokeServer("Energy Volley", ohTable2, "Blacknwhite27")
+                                                            end)
+                                                                spawn(function ()
+                                                                    player = game.Players.LocalPlayer
+                                                                                                                         
+                                                                                                                         ohTable2 = {
+                                                                                                                            ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, -10, 0),
+                                                                                                                            ["FaceMouse"] = true
+                                                                                                                        }
+                                                                                                                        
+                                                                local ohBoolean2 = true
+                                                                local ohNil3 = nil
+                                                                
+                                                                game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Destruction Orb", ohBoolean2, ohNil3, ohTable2)
+                                                            end)
+                                                                spawn(function ()
+                                                                    player = game.Players.LocalPlayer
+                                                                                                                         
+                                                                                                                         ohTable2 = {
+                                                                                                                            ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, -10, 0),
+                                                                                                                            ["FaceMouse"] = true
+                                                                                                                        }
+                                                                                                                        
+                                                                local ohBoolean2 = false
+                                                                local ohBoolean3 = true
+                                                                
+                                                                game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Destruction Orb", ohBoolean2, ohBoolean3, ohTable2)
+                                                            end)
+                                                                spawn(function ()
+                                                                    player = game.Players.LocalPlayer
+                                                                                                                         
+                                                                                                                         ohTable2 = {
+                                                                                                                            ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, -10, 0),
+                                                                                                                            ["FaceMouse"] = true
+                                                                                                                        }
+                                                                                                                        
+                                                                
+                                                                local ohBoolean2 = true
+                                                                local ohNil3 = nil
+                                                                
+                                                                game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Ultimate Spirit Bomb", ohBoolean2, ohNil3, ohTable2)
+                                                            end)
+                                                                spawn(function ()
+                                                                    player = game.Players.LocalPlayer
+                                                                                                                         
+                                                                                                                         ohTable2 = {
+                                                                                                                            ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, -10, 0),
+                                                                                                                            ["FaceMouse"] = true
+                                                                                                                        }
+                                                                                                                        
+                                                                local ohBoolean2 = false
+                                                                local ohBoolean3 = true
+                                                                
+                                                                game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Ultimate Spirit Bomb", ohBoolean2, ohBoolean3, ohTable2)
+                                                            end)
+                                                                
+                                                                    
+                                                                
+                                                                
+                                                                spawn(function ()
+                                                                    player = game.Players.LocalPlayer
+                                                                                                                         
+                                                                                                                         ohTable2 = {
+                                                                                                                            ["MouseHit"] = Echar:GetPrimaryPartCFrame(),
+                                                                                                                            ["FaceMouse"] = true
+                                                                                                                        }
+                                                                                                                        
+                                                                
+                                                                game:GetService("ReplicatedStorage").Package.Events.Hak:InvokeServer("Soul Punisher", ohTable2, "Blacknwhite27")
+                                                            end)
+                                                                spawn(function ()
+                                                                    player = game.Players.LocalPlayer
+                                                                                                                         
+                                                                                                                         ohTable2 = {
+                                                                                                                            ["MouseHit"] = Echar:GetPrimaryPartCFrame(),
+                                                                                                                            ["FaceMouse"] = true
+                                                                                                                        }
+                                                                                                                        
+                                                                
+                                                                game:GetService("ReplicatedStorage").Package.Events.Hak:InvokeServer("Destruction", ohTable2, "Blacknwhite27")
+                                                                end)
+                                                                
+																wait(.1)
+															until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                                game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or
+                                                                game.Workspace.Living[targetted].Stats.Ki.Value < 10000 or not autofarm
+														else
+															spawn(function()
+																repeat
+																	if game.Workspace.Living[targetted].Stats.Ki.Value > 400 and getgenv().AutoAttackst == true then
+																		local Event =
+                                                                            game:GetService("ReplicatedStorage").Package.Events.mel
+																		local A_2 = "Blacknwhite27"
+																		spawn(function()
+																			local A_1 = "Mach Kick"
+																			Event:InvokeServer(A_1, A_2)
+																		end)
+																		spawn(function()
+																			A_1 = "Energy Volley"
+																			A_2 = {
+																				["FaceMouse"] = false,
+																				["MouseHit"] = CFrame.new(15932.0273, -12.8115005,
+                                                                                    15540.2061, 0.983303905, -0.0826973468,
+                                                                                    0.162094966, 0, 0.89077127, 0.454452157,
+                                                                                    -0.181971505, -0.446864575, 0.875898659)
+                                                                                -- CFrame.new(2669.62573, 17.2917271, -1559.78247, 0.736925066, 0.155183718, -0.657920659, 7.4505806e-09, 0.973292172, 0.229570359, 0.675974548, -0.169176146, 0.717243314)
+																			}
+																			A_3 = "Blacknwhite27"
+																			Event =
+                                                                                game:GetService("ReplicatedStorage").Package.Events
+                                                                                    .voleys
+																			Event:InvokeServer(A_1, A_2, A_3)
+																		end)
+																		wait(.5)
+																	end
+																	wait()
+																until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                                    game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or
+                                                                    game.Workspace.Living[targetted].Stats.Ki.Value > 10000 and
+                                                                    checkValue > 2100000 or not autofarm
+															end)
+															repeat
+																spawn(function()
+																	game:GetService("ReplicatedStorage").Package.Events.p:FireServer(
+                                                                        "Blacknwhite27", 1)
+																end)
+																wait()
+															until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                                game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or
+                                                                game.Workspace.Living[targetted].Stats.Ki.Value > 2000 and
+                                                                checkValue > 2100000 or not autofarm
+														end
+														wait()
+													until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                        game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or not autofarm
+													if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+														getgenv().stackneeded = true
+														getgenv().dead = true
+														autoFarmLoopRunning = false
+														flying = false
+														charge = false
+                                                        -- Script generated by SimpleSpy - credits to exx#9394
+													end
+													breakagain = true
+													break
+												else
+													switch = 1
+													local checkValue = getCheckValue()
+													if checkValue >= 200000000 and game.placeId ~= 5151400895 then
+														SelectedQuests, SelectedMobs = "SSJG Kakata", "SSJG Kakata"
+													else
+														switch = 2
+														SelectedQuests, SelectedMobs, sameplanet = getQuest(switch)
+													end
+													if v.Name:lower() == SelectedMobs:lower() and game.Players.LocalPlayer.Character and
+                                                        game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and
+                                                        v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and
+                                                        v.Humanoid.Health > 0 then
+														if game:GetService("ReplicatedStorage").Datas[game.Players.LocalPlayer.UserId].Quest.Value ~= SelectedQuests then -- error around here
+															game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Others.NPCs[SelectedQuests]
+                                                                                                               .HumanoidRootPart.CFrame
+															repeat
+																wait()
+																game.ReplicatedStorage.Package.Events.Qaction:InvokeServer(game:GetService("Workspace").Others.NPCs[SelectedQuests])
+															until game:GetService("ReplicatedStorage").Datas[game.Players.LocalPlayer.UserId].Quest.Value == SelectedQuests or
+                                                                    game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or not autofarm
+														end
+														game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame +
+                                                                                                       Vector3.new(0, 0, 0)
+														wait(.2)
+            
+            
+                                        --                                                                player = game.Players.LocalPlayer
+                                        --                                                                humanoid = player.Character.Humanoid
+                                        -- direction = humanoid.Parent.HumanoidRootPart.CFrame.lookVector -- Get the direction the character is facing
+                                       
+                                        -- offset = Vector3.new(0, 0, -5) -- Adjust the offset to position the attack in front of the character
+                                        -- attackPosition = humanoid.Parent.HumanoidRootPart.Position + direction * offset
+                                       
+                                        -- attackCFrame = CFrame.new(attackPosition, attackPosition + direction)
+                                        local Echar = v
+														spawn(function()
+															repeat
+																
+						local myChar = game.Players.LocalPlayer.Character
+						myChar.HumanoidRootPart.CFrame = Echar:GetPrimaryPartCFrame() * CFrame.new(0, 0, 2)
+                                                                    
+																wait()
+															until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                                game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or not autofarm
+														end)
+
+                                                        
+														repeat
+															
+
+															
+
+            
+                                                            -- checkki = game.workspace.Living[targetted].Stats.Ki
+															if checkValue > 2100000 and
+                                                                game.Workspace.Living[targetted].Stats.Ki.Value > 10000 and getgenv().AutoAttackst == true then -- op move stack 2
+                                                                    
+                                                                
+                                                                    
+                                                               
+                                                                    repeat
+                                                                    
+                                                                     
+                                                                        
+                                                                            
+                                                                        
+                                                                                
+                                                                            
+                                                                    wait(.1)
+    
+                                                                   
+                                                                 
+                      
+                    local mel = game:GetService("ReplicatedStorage").Package.Events.mel
+                                                                 
+                        spawn(function ()
+                        mel:InvokeServer("Meteor Crash", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Vital Strike", "Blacknwhite27")
+                    end)
+                    spawn(function ()
+                        mel:InvokeServer("Uppercut", "Blacknwhite27")
+                    end)
+                    spawn(function ()
+                        mel:InvokeServer("Meteor Strike", "Blacknwhite27")
+                    end)
+                    spawn(function ()
+                        mel:InvokeServer("High Power Rush", "Blacknwhite27")
+                    end)
+                    spawn(function ()
+                        mel:InvokeServer("Meteor Strike", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Mach Kick", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Meteor Charge", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Super Dragon Fist", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Spirit Breaking Cannon", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Spirit Barrage", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Bone Crusher", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("God Slicer", "Blacknwhite27")
+                    end)
+
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame(),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    game:GetService("ReplicatedStorage").Package.Events.voleys:InvokeServer("Energy Volley", ohTable2, "Blacknwhite27")
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, -10, 0),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    local ohBoolean2 = true
+                    local ohNil3 = nil
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Destruction Orb", ohBoolean2, ohNil3, ohTable2)
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, -10, 0),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    local ohBoolean2 = false
+                    local ohBoolean3 = true
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Destruction Orb", ohBoolean2, ohBoolean3, ohTable2)
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, -10, 0),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    
+                    local ohBoolean2 = true
+                    local ohNil3 = nil
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Ultimate Spirit Bomb", ohBoolean2, ohNil3, ohTable2)
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, -10, 0),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    local ohBoolean2 = false
+                    local ohBoolean3 = true
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Ultimate Spirit Bomb", ohBoolean2, ohBoolean3, ohTable2)
+                end)
+                    
+                        
+                    
+                    
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame(),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.Hak:InvokeServer("Soul Punisher", ohTable2, "Blacknwhite27")
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame(),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.Hak:InvokeServer("Destruction", ohTable2, "Blacknwhite27")
+                    end)
+					
+                                                                    wait(.1)
+                                                                    until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                                        game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or
+                                                                        game.Workspace.Living[targetted].Stats.Ki.Value < 10000 or not autofarm
+                                                                else
+                                                                    spawn(function()
+                                                                        repeat
+                                                                            if game.Workspace.Living[targetted].Stats.Ki.Value > 400 and getgenv().AutoAttackst == true then
+                                                                                local Event =
+                                                                                    game:GetService("ReplicatedStorage").Package.Events.mel
+                                                                                local A_2 = "Blacknwhite27"
+                                                                                spawn(function()
+                                                                                    local A_1 = "Mach Kick"
+                                                                                    Event:InvokeServer(A_1, A_2)
+                                                                                end)
+                                                                                spawn(function()
+                                                                                    A_1 = "Energy Volley"
+                                                                                    A_2 = {
+                                                                                        ["FaceMouse"] = false,
+                                                                                        ["MouseHit"] = CFrame.new(15932.0273, -12.8115005,
+                                                                                            15540.2061, 0.983303905, -0.0826973468,
+                                                                                            0.162094966, 0, 0.89077127, 0.454452157,
+                                                                                            -0.181971505, -0.446864575, 0.875898659)
+                                                                                        -- CFrame.new(2669.62573, 17.2917271, -1559.78247, 0.736925066, 0.155183718, -0.657920659, 7.4505806e-09, 0.973292172, 0.229570359, 0.675974548, -0.169176146, 0.717243314)
+                                                                                    }
+                                                                                    A_3 = "Blacknwhite27"
+                                                                                    Event =
+                                                                                        game:GetService("ReplicatedStorage").Package.Events
+                                                                                            .voleys
+                                                                                    Event:InvokeServer(A_1, A_2, A_3)
+                                                                                end)
+                                                                                wait(1)
+                                                                            end
+                                                                            wait()
+                                                                        until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                                            game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or
+                                                                            game.Workspace.Living[targetted].Stats.Ki.Value > 10000 and
+                                                                            checkValue > 2100000 or not autofarm
+                                                                    end)
+                                                                    repeat
+                                                                        spawn(function()
+                                                                            game:GetService("ReplicatedStorage").Package.Events.p:FireServer(
+                                                                                "Blacknwhite27", 1)
+                                                                        end)
+                                                                        wait()
+                                                                    until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                                        game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or
+                                                                        game.Workspace.Living[targetted].Stats.Ki.Value > 2000 and
+                                                                        checkValue > 2100000 or not autofarm
+                                                                end
+                                                                wait()
+                                                            until not autoFarmLoopRunning or v.Humanoid.Health <= 0 or
+                                                                game.Players.LocalPlayer.Character.Humanoid.Health <= 0 or not autofarm
+														if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+                                                            -- Script generated by SimpleSpy - credits to exx#9394
+															getgenv().stackneeded = true
+															getgenv().dead = true
+															autoFarmLoopRunning = false
+															flying = false
+															charge = false
+														end
+														breakagain = true
+														break
+													end
+												end -- switch 2
+											end
+										end
+										wait()
+									end
+								end)
+							end
+						end)
+						wait()
+					end
+					wait()
+				end
+			end
+		end,
+	})
+
+	AutoAttackingstrong = Tab1:CreateToggle({
+		Name = "Auto-Attack (Ultra Fast)",
+		CurrentValue = false,
+		Flag = "Toggle2",
+		Callback = function(Value)
+			if Value then
+				getgenv().AutoAttackst = true
+			else
+				getgenv().AutoAttackst = false
+			end
+			
+		end,
+	})
+	AutoAttackingstrong = Tab1:CreateToggle({
+		Name = "Auto-Stack",
+		CurrentValue = false,
+		Flag = "Toggle2222222",
+		Callback = function(Value)
+			if Value then
+				getgenv().autostackloop = true
+			else
+				getgenv().autostackloop = false
+			end
+        
+		end,
+	})
+
+	
+	local AutoBlocking = Tab1:CreateToggle({
+		Name = "Auto-Block",
+		CurrentValue = false,
+		Flag = "Togglepoaaa",
+		Callback = function(Value)
+			getgenv().AutoBlock = Value
+			while getgenv().AutoBlock == true do
+				task.wait()
+				if getgenv().AutoBlock ~= true then
+					repeat
+						task.wait()
+						game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(false)
+					until game:GetService("Players").LocalPlayer.Status.Blocking.Value ~= true
+				end
+				break
+			end
+			repeat
+				task.wait()
+				game:GetService("ReplicatedStorage").Package.Events.block:InvokeServer(true)
+					
+				
+			until getgenv().AutoBlock == false
+		end,
+	})
+
+	local Section2 = Tab1:CreateSection("Extra")
+	AutoCharging = Tab1:CreateToggle({
+		Name = "Auto-Charge",
+		CurrentValue = false,
+		Flag = "Toggle3",
+		Callback = function(Value)
+
+			if Value then
+				getgenv().AutoCharge = true
+			else
+				getgenv().AutoCharge = false
+			end
+			
+			
+		end,
+	})
+	local AutoRebirthing = Tab1:CreateToggle({
+		Name = "Auto-Rebirth",
+		CurrentValue = false,
+		Flag = "Toggle4",
+		Callback = function(Value)
+			getgenv().AutoRebirth = Value
+			while getgenv().AutoRebirth == true do
+				task.wait()
+				if getgenv().AutoRebirth ~= true then
+					break
+				end
+				task.spawn(function()
+					rebirthRemote = game:GetService("ReplicatedStorage").Package.Events.reb
+					rebirthRemote:InvokeServer()
+				end)
+			end
+		end,
+	})
+	local AutoTransforming = Tab1:CreateToggle({
+		Name = "Auto-Transform",
+		CurrentValue = false,
+		Flag = "Toggle5",
+		Callback = function(Value)
+			if Value then
+				getgenv().AutoTransform = true
+			else
+				getgenv().AutoTransform = false
+			end
+		end,
+	})
+	local Tab2 = Window:CreateTab("Teleports", 4483362458)
+	local Section3 = Tab2:CreateSection("Games")
+	local goBills = Tab2:CreateButton({
+		Name = "Planet Bills",
+		Callback = function()
+			Rayfield:Notify({
+				Title = "DBU",
+				Content = "Teleporting please wait!",
+				Duration = 6.5,
+				Image = 4483362458,
+			})
+			task.wait()
+			local Tp1 = "Vills Planet"
+			game:GetService("ReplicatedStorage").Package.Events.TP:InvokeServer(Tp1)
+		end,
+	})
+	local goEarth = Tab2:CreateButton({
+		Name = "Earth",
+		Callback = function()
+			Rayfield:Notify({
+				Title = "DBU",
+				Content = "Teleporting please wait!",
+				Duration = 6.5,
+				Image = 4483362458,
+			})
+			task.wait()
+			local Tp2 = "Earth"
+			game:GetService("ReplicatedStorage").Package.Events.TP:InvokeServer(Tp2)
+		end,
+	})
+
+    local function GetPlayer(String)
+        String = String:gsub("%s+", "")
+        for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+            if v.Name:lower():match("^" .. String:lower()) or v.DisplayName:lower():match("^" .. String:lower()) then
+                return v
+            end
+        end
+        return nil
+    end
+	local Section4 = Tab2:CreateSection("Other Players")
+	local PlayerSelector = Tab2:CreateInput({
+		Name = "Select a player",
+		PlaceholderText = "Type the name here!",
+		RemoveTextAfterFocusLost = false,
+		Callback = function(tblud)
+			getgenv().SelectedPlayer = GetPlayer(tblud)
+			task.wait()
+			if getgenv().SelectedPlayer == nil then
+				game:GetService("StarterGui"):SetCore("SendNotification", {
+					Title = "Script",
+					Text = "Player not found!",
+					Icon = nil,
+					Duration = 3,
+				})
+			else
+				game:GetService("StarterGui"):SetCore("SendNotification", {
+					Title = "Script",
+					Text = "You have selected " .. getgenv().SelectedPlayer.Name,
+					Icon = nil,
+					Duration = 3,
+				})
+			end
+		end,
+	})
+	local Killplayer = Tab2:CreateToggle({
+		Name = "Kill [Player]",
+		CurrentValue = false,
+		Callback = function(Value)
+			getgenv().killp = Value
+			while getgenv().killp == true do
+				task.wait()
+				if getgenv().killp ~= true then
+					break
+				end
+				repeat
+					task.wait()
+					pcall(function()
+						local Echar = getgenv().SelectedPlayer.Character
+						local myChar = game.Players.LocalPlayer.Character
+						myChar.HumanoidRootPart.CFrame = Echar:GetPrimaryPartCFrame() * CFrame.new(0, 0, 2)
+                        spawn(function()
+                            punchRemote = game:GetService("ReplicatedStorage").Package.Events.p
+                        
+						punchRemote:FireServer('Blacknwhite27', 1)
+                    end)
+                    local mel = game:GetService("ReplicatedStorage").Package.Events.mel
+                                                                 
+                        spawn(function ()
+                        mel:InvokeServer("Meteor Crash", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Vital Strike", "Blacknwhite27")
+                    end)
+                    spawn(function ()
+                        mel:InvokeServer("Uppercut", "Blacknwhite27")
+                    end)
+                    spawn(function ()
+                        mel:InvokeServer("Meteor Strike", "Blacknwhite27")
+                    end)
+                    spawn(function ()
+                        mel:InvokeServer("High Power Rush", "Blacknwhite27")
+                    end)
+                    spawn(function ()
+                        mel:InvokeServer("Meteor Strike", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Mach Kick", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Meteor Charge", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Super Dragon Fist", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Spirit Breaking Cannon", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Spirit Barrage", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("Bone Crusher", "Blacknwhite27")
+                    end)
+                        spawn(function ()
+                        mel:InvokeServer("God Slicer", "Blacknwhite27")
+                    end)
+
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame(),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    game:GetService("ReplicatedStorage").Package.Events.voleys:InvokeServer("Energy Volley", ohTable2, "Blacknwhite27")
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, 5, 0),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    local ohBoolean2 = true
+                    local ohNil3 = nil
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Destruction Orb", ohBoolean2, ohNil3, ohTable2)
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, 5, 0),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    local ohBoolean2 = false
+                    local ohBoolean3 = true
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Destruction Orb", ohBoolean2, ohBoolean3, ohTable2)
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, 5, 0),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    
+                    local ohBoolean2 = true
+                    local ohNil3 = nil
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Ultimate Spirit Bomb", ohBoolean2, ohNil3, ohTable2)
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame() * CFrame.new(0, 5, 0),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    local ohBoolean2 = false
+                    local ohBoolean3 = true
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.BigBall:InvokeServer("Ultimate Spirit Bomb", ohBoolean2, ohBoolean3, ohTable2)
+                end)
+                    
+                        
+                    
+                    
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame(),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.Hak:InvokeServer("Soul Punisher", ohTable2, "Blacknwhite27")
+                end)
+                    spawn(function ()
+                        player = game.Players.LocalPlayer
+                                                                             
+                                                                             ohTable2 = {
+                                                                                ["MouseHit"] = Echar:GetPrimaryPartCFrame(),
+                                                                                ["FaceMouse"] = true
+                                                                            }
+                                                                            
+                    
+                    game:GetService("ReplicatedStorage").Package.Events.Hak:InvokeServer("Destruction", ohTable2, "Blacknwhite27")
+                    end)
+					end)
+                    wait(.5)
+				until getgenv().killp == false
+			end
+		end,
+	})
+	local followplayer = Tab2:CreateToggle({
+		Name = "Follow [Player]",
+		CurrentValue = false,
+		Callback = function(Value)
+			getgenv().followp = Value
+			while getgenv().followp == true do
+				task.wait()
+				if getgenv().followp ~= true then
+					break
+				end
+				repeat
+					task.wait()
+					pcall(function()
+						local Echar = getgenv().SelectedPlayer.Character
+						local myChar = game.Players.LocalPlayer.Character
+						myChar.HumanoidRootPart.CFrame = Echar:GetPrimaryPartCFrame() * CFrame.new(0, 0, 2)
+					end)
+				until getgenv().followp == false
+			end
+		end,
+	})
+	local ToPlayer = Tab2:CreateButton({
+		Name = "To [Player]",
+		Callback = function()
+			local	echar = getgenv().SelectedPlayer.Character
+			local	myChar = game.Players.LocalPlayer.Character
+			myChar.HumanoidRootPart.CFrame = echar:GetPrimaryPartCFrame() * CFrame.new(0, 0, 2)
+		end,
+	})
+	local Section5 = Tab2:CreateSection("NPCs")
+	local ChangeFace = Tab2:CreateButton({
+		Name = "Appearance Change",
+		Callback = function()
+			if game.PlaceId == 5151400895 then
+				return notify("Earth Only!")
+			else
+				task.spawn(function()
+					game:GetService("ReplicatedStorage").Package.Events.Qaction:InvokeServer(workspace.Others.NPCs["Appearance Changer"])
+				end)
+			end
+		end,
+	})
+	local Tab3 = Window:CreateTab("Forms", 4483362458)
+
+    
+	local Section6 = Tab3:CreateSection("Stacking")
+	local Paragraph = Tab3:CreateParagraph({
+		Title = "Available forms to stack",
+		Content = "Kaioken, SSJ Kaioken, SSJ2 Majin, SSJ3, LSSJ, Mystic, Godly SSJ2"
+	})
+	local Dropdown = Tab3:CreateDropdown({
+        Name = "Form",
+        Options = {"Kaioken", "SSJ Kaioken", "SSJ2 Majin", "SSJ3", "LSSJ", "Mystic", "Godly SSJ2"},
+        CurrentOption = {"Godly SSJ2"},
+        MultipleOptions = false,
+        Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Option)
+
+            getgenv().tostack = tostring(Option[1])
+            --print(getgenv().tostack)
+
+        -- The function that takes place when the selected option is changed
+        -- The variable (Option) is a table of strings for the current selected options
+        end,
+     })
+	local Stack = Tab3:CreateButton({
+		Name = "Stack",
+		Callback = function()
+			-- getgenv().tostack = tostring(Dropdown.CurrentOption[1])
+			wait()
+            print(getgenv().tostack)
+			if getgenv().tostack == nil then
+				notify("You have not selected a form")
+			else
+				if getgenv().AutoTransform == true then
+					AutoTransforming:Set(false)
+					task.wait(1)
+					stack(getgenv().tostack)
+					task.wait(1)
+					AutoTransforming:Set(true)
+				else
+					stack(getgenv().tostack)
+				end
+			end
+		end,
+	})
+	local Section7 = Tab3:CreateSection("Form Stuff")
+	local InfStamina = Tab3:CreateToggle({
+		Name = "No Form Energy Drain",
+		CurrentValue = false,
+		Flag = "Toggle8",
+		Callback = function(Value)
+			getgenv().togg3le = Value
+			
+			local event = game:GetService("ReplicatedStorage").Package.Events.drain
+			local OldHook, hookmetamethod, getnamecallmethod = nil, hookmetamethod, getnamecallmethod
+			OldHook = hookmetamethod(game, "__namecall", function(self, ...)
+				local Got  = getnamecallmethod():lower()
+				if (getgenv().togg3le) and self == event and Got:lower() == "fireserver" then
+					return
+				end
+				return OldHook(self, ...)
+			end)
+		end,
+	})
+	
+	local Tab4 = Window:CreateTab("Stats Edit", 4483362458)
+	local Section8 = Tab4:CreateSection("Changing Stats")
+	local Abbreviate = Tab4:CreateButton({
+		Name = "Abbreviate Stats",
+		Callback = function(Value)
+			task.spawn(function()
+				local suffixes = {
+					"K",
+					"M",
+					"B",
+					"T",
+					"Qd",
+					"Qn"
+				}
+
+				local function FormatValue(value)
+					local negative = (tonumber(value) or 0) < 0
+					if negative then
+						value = -value
+					end
+			
+					local str = value
+					local formatted = false
+			
+					for i = #suffixes, 1, -1 do
+						local divisor = 10 ^ (i * 3)
+						if value >= divisor then
+							str = math.floor(value / divisor * 100) / 100 .. suffixes[i]
+							formatted = true
+							break
+						end
+					end
+			
+					if not formatted then
+						str = math.floor(value)
+					end
+			
+					if negative then
+						str = "-" .. str
+					end
+			
+					return str
+				end
+			
+				local isRunning = Value
+				local breaks = Value
+			
+				local function UpdateUI()
+					while isRunning do
+						task.wait()
+						if game:GetService("Players").LocalPlayer.Character then
+							local humanoid = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+							if humanoid and humanoid.Health > 0 then
+								
+			
+								elements.ZeniValue.Text = "Zeni: " .. FormatValue(statValues.Zeni)
+								elements.Strength.Text = "Strength: " .. FormatValue(statValues.StrengthValue)
+								elements.Speed.Text = "Speed: " .. FormatValue(statValues.SpeedValue)
+								elements.Defense.Text = "Defense: " .. FormatValue(statValues.DefenseValue)
+								elements.Energy.Text = "Energy: " .. FormatValue(statValues.EnergyValue)
+			
+								if statValues.TransfromValue ~= "None" then
+									statValues.Strength.Text = "Strength: " .. FormatValue(statValues.StrengthValue) .. " (+" ..
+														FormatValue(statValues.FormStrength - statValues.StrengthValue) .. ")"
+														statValues.Speed.Text = "Speed: " .. FormatValue(statValues.SpeedValue) .. " (+" ..
+													 FormatValue(statValues.FormSpeed - statValues.SpeedValue) .. ")"
+													 statValues.Defense.Text = "Defense: " .. FormatValue(statValues.DefenseValue) .. " (+" ..
+													   FormatValue(statValues.FormDefense - statValues.DefenseValue) .. ")"
+													   statValues.Energy.Text = "Energy: " .. FormatValue(statValues.EnergyValue) .. " (+" ..
+													  FormatValue(statValues.FormEnergy - statValues.EnergyValue) .. ")"
+								end
+			
+								statValues.healthbar.Text = "Health: " .. FormatValue(statValues.currentHealth) .. " / " .. FormatValue(statValues.maxHealth)
+								statValues.energybar.Text = "Energy: " .. FormatValue(statValues.currentEnergy) .. " / " .. FormatValue(statValues.MaxEnergy)
+							end
+						else
+							isRunning = false
+						end
+					end
+				end
+			
+				task.spawn(UpdateUI)
+			
+				local function OnCharacterAdded(character)
+					isRunning = true
+					task.spawn(UpdateUI)
+				end
+			
+				game:GetService("Players").LocalPlayer.Character.Humanoid.HealthChanged:Connect(function(value)
+					local healthbar = game:GetService("Players").LocalPlayer.PlayerGui.Main.MainFrame.Bars.Health.TextLabel
+					healthbar.Text = "Health: " .. FormatValue(value) .. " / " .. FormatValue(game:GetService("Players").LocalPlayer.Character.Humanoid.MaxHealth)
+				end)
+			
+				local function OnCharacterRemoving()
+					isRunning = false
+				end
+			
+				game:GetService("Players").LocalPlayer.CharacterAdded:Connect(OnCharacterAdded)
+				game:GetService("Players").LocalPlayer.CharacterRemoving:Connect(OnCharacterRemoving)
+			end)
+		end,
+	})
+	local flyoffon = Tab4:CreateToggle({
+		Name = "Fly speed",
+		CurrentValue = false,
+		Flag = "Toggle9",
+		Callback = function(Value)
+			getgenv().onoffidk = Value
+			task.wait()
+			if getgenv().onoffidk ~= true then
+				getgenv().settings['FLYING']['SPEED'] = nil
+			end
+		end,
+	})
+
+	local Flyspeedset = Tab4:CreateInput({
+		Name = "Fly speed amount:",
+		PlaceholderText = "Put a amount here.",
+		RemoveTextAfterFocusLost = false,
+		Callback = function(amount)
+			getgenv().settings = {
+				['FLYING'] = {
+					['ON'] = getgenv().onoffidk;
+					['SPEED'] = amount;
+				};
+			}
+			local s = getgenv().settings['FLYING']['SPEED']
+			while getgenv().settings['FLYING']['ON'] == true do
+				game:GetService("RunService").Heartbeat:wait();
+				getrenv()._G.FlightSpeed = getgenv().settings['FLYING']['SPEED'];
+				if s ~= getgenv().settings['FLYING']['SPEED'] then
+					break;
+				end;
+			end;
+		end,
+	})
+	local Section9 = Tab4:CreateSection("Checking Stats")
+	local Rebirthamountset = Tab4:CreateInput({
+		Name = "Input number of rebirths",
+		PlaceholderText = "Put a amount here.",
+		RemoveTextAfterFocusLost = false,
+		Callback = function(amount)
+			getgenv().SelectedRebirthAmount = amount
+		end,
+	})
+	local CheckMuli = Tab4:CreateButton({
+		Name = "Check Rebith Multiplier",
+		Callback = function()
+			game:GetService("StarterGui"):SetCore("SendNotification", {
+				Title = "Script",
+				Text = "" .. getgenv().SelectedRebirthAmount * 0.2 + 1,
+				Icon = nil,
+				Duration = 3,
+			})
+		end,
+	})
+	local StatsReader = Tab4:CreateButton({
+		Name = "Stats Reader",
+		Callback = function()
+			View.Visible = not View.Visible
+			if View.Visible == true then
+				Rayfield:Notify({
+					Title = "Script",
+					Content = "Opened stats reader click again to close",
+					Duration = 6.5,
+					Image = 4483362458,
+				})
+			end
+		end,
+	})
+	local Tab5 = Window:CreateTab("LocalPlayer Stuff", 4483362458)
+	local Section10 = Tab5:CreateSection("All the Stuff")
+	local fpsboost = Tab5:CreateButton({
+		Name = "Fps Boost/Fps Unlocker",
+		Callback = function()
+			_G.Settings = {
+				Players = {
+					["Ignore Me"] = true, -- Ignore your Character
+					["Ignore Others"] = true-- Ignore other Characters
+				},
+				Meshes = {
+					Destroy = true, -- Destroy Meshes
+					LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
+				},
+				Images = {
+					Invisible = true, -- Invisible Images
+					LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
+					Destroy = true, -- Destroy Images
+				},
+				["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire and Sparkles
+				["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
+				["No Explosions"] = true, -- Makes Explosion's invisible
+				["No Clothes"] = true, -- Removes Clothing from the game
+				["Low Water Graphics"] = true, -- Removes Water Quality
+				["No Shadows"] = true, -- Remove Shadows
+				["Low Rendering"] = true, -- Lower Rendering
+				["Low Quality Parts"] = true -- Lower quality parts
+			}
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/N17S3/Script/main/FpsBoost"))()
+		end
+	})
+	local deathfr = Tab5:CreateButton({
+		Name = "Force Reset",
+		Callback = function()
+			game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
+		end,
+	})
+	local Rejoin = Tab5:CreateButton({
+		Name = "Rejoin",
+		Callback = function()
+			game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+		end,
+	})
+
+	local data = game:GetService("Players").LocalPlayer.Character.Stats
+	local Bunny = Tab5:CreateButton({
+		Name = "ServerHop",
+		Callback = function()
+			local _servers = Api .. _place .. "/servers/Public?sortOrder=Desc&limit=100"
+			local function ListServers(cursor)
+				local Raw = game:HttpGet(_servers .. ((cursor and "&cursor=" .. cursor) or ""))
+				return Http:JSONDecode(Raw)
+			end
+			local Next;
+			repeat
+				local Servers = ListServers(Next)
+				for i, v in next, Servers.data do
+					if v.playing < v.maxPlayers and v.id ~= _id then
+						local s, r = pcall(TPS.TeleportToPlaceInstance, TPS, _place, v.id, game:GetService("Players").LocalPlayer)
+						if s then
+							break
+						end
+					end
+				end
+				Next = Servers.nextPageCursor
+			until not Next
+		end,
+	})
+	local Infinitypain = Tab5:CreateButton({
+		Name = "Infinity Yield",
+		Callback = function()
+			notify("Credits to Infinity Yield's Devs!")
+			wait(2)
+			loadstring(game:HttpGet('https://pastebin.com/raw/3mZkiNjr'))()
+		end,
+	})
+	Rayfield:LoadConfiguration()
+end
