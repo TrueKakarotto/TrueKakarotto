@@ -576,6 +576,7 @@ local function PGPDYH_fake_script() -- Frame_2.Script
                 {nombre= "ZAIKO_xXarthurXx",verificado = true},
                 {nombre= "Master_ninjasi",verificado = true},
                 {nombre= "GOKUVSJJJ",verificado = true},
+                {nombre= "BL4CK_V1T0R",verificado = true},
 	}
 	local contador = 0
 	
